@@ -1,0 +1,913 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>星標鎮日報</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap">
+<style>
+:root {
+  /* Layout: full-bleed isometric town canvas; reporter dialogue docked bottom-left, newspaper pinned right (stacked on phones) */
+  --night: #1c2336;      /* page ground, HUD panels */
+  --panel: #24304d;      /* dialogue box */
+  --panel-edge: #f2e6c4; /* dialogue frame */
+  --paper: #ebe9e1;      /* newsprint */
+  --paper-rule: #bdb9aa;
+  --ink: #1b1d24;
+  --ink-soft: #5a5c64;
+  --cobalt: #2a55c9;     /* press stamp, gains */
+  --gold: #ffcc3d;       /* selection, rank badges */
+  --hud-fg: #f4f1e6;
+  --hud-dim: #b8bfd3;
+  --live: #1f7a4a;
+  --warn: #8a6a10;
+  --err: #b3261e;
+  --f-pixel: "DotGothic16", "Noto Sans TC", ui-monospace, monospace;
+  --f-serif: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+  --f-sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  color-scheme: light;
+}
+html, body { height: 100%; }
+body { background: var(--night); color: var(--ink); font-family: var(--f-sans); }
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.stage { position: relative; height: 100%; overflow: hidden; }
+#town { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: manipulation; }
+
+.overlay {
+  position: absolute; inset: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(340px, 30vw, 410px);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  column-gap: 28px; row-gap: 16px;
+  padding-block: 16px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  pointer-events: none;
+}
+.overlay > * { pointer-events: auto; }
+
+/* HUD */
+.hud { grid-column: 1; grid-row: 1; justify-self: start; display: flex; flex-wrap: wrap; gap: 8px; }
+.hud-card {
+  background: rgba(28, 35, 54, .9); color: var(--hud-fg);
+  border: 2px solid rgba(242, 230, 196, .55);
+  box-shadow: 4px 4px 0 rgba(10, 14, 28, .3);
+  padding: 6px 12px; font-family: var(--f-pixel); line-height: 1.25;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.hud-card b { font-size: 18px; font-weight: 400; }
+.hud-card span { font-size: 11px; letter-spacing: .14em; color: var(--hud-dim); }
+.hud-card.stat b { color: var(--gold); font-variant-numeric: tabular-nums; }
+
+/* Dialogue */
+.talk { grid-column: 1; grid-row: 3; align-self: end; display: flex; align-items: flex-end; max-width: 720px; width: 100%; }
+#npc { width: 160px; height: 188px; flex: none; image-rendering: pixelated; margin-right: -10px; position: relative; z-index: 1; filter: drop-shadow(4px 4px 0 rgba(10, 14, 28, .35)); }
+.bubble {
+  position: relative; flex: 1; min-width: 0; min-height: 150px;
+  background: var(--panel); color: var(--hud-fg);
+  border: 3px solid var(--panel-edge); outline: 3px solid var(--night);
+  box-shadow: 8px 8px 0 rgba(10, 14, 28, .35);
+  padding: 26px 22px 12px 26px;
+  font-family: var(--f-pixel); font-size: 18px; line-height: 1.65;
+  display: flex; flex-direction: column; gap: 8px; cursor: pointer;
+}
+.who {
+  position: absolute; top: -17px; left: 22px;
+  display: flex; align-items: baseline; gap: 8px;
+  background: var(--gold); color: var(--ink);
+  border: 3px solid var(--night); padding: 2px 12px;
+}
+.who b { font-size: 16px; font-weight: 400; }
+.who span { font-size: 12px; letter-spacing: .1em; }
+#line { margin: 0; min-height: 3.3em; overflow-wrap: anywhere; text-wrap: pretty; }
+.talk-foot { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 13px; color: var(--hud-dim); }
+.talk-foot a { color: var(--gold); text-underline-offset: 3px; min-width: 0; overflow-wrap: anywhere; }
+.talk-foot .step { font-variant-numeric: tabular-nums; margin-left: auto; }
+.tbtn {
+  font: inherit; font-size: 13px; color: var(--ink); background: var(--panel-edge);
+  border: 2px solid var(--night); padding: 1px 10px; cursor: pointer;
+}
+.tbtn:hover { background: var(--gold); }
+.tbtn:focus-visible, .row:focus-visible, .bar:focus-visible, .more-btn:focus-visible, .talk-foot a:focus-visible, .lead h2 a:focus-visible {
+  outline: 3px solid var(--gold); outline-offset: 2px;
+}
+.tbtn.next::after { content: " ▼"; display: inline-block; animation: nudge 1s steps(2) infinite; }
+@keyframes nudge { 50% { transform: translateY(2px); } }
+
+/* Newspaper */
+.paper {
+  grid-column: 2; grid-row: 1 / 4; align-self: center;
+  max-height: 100%; overflow: auto;
+  background-color: var(--paper);
+  background-image: repeating-linear-gradient(0deg, rgba(27, 29, 36, .022) 0 1px, transparent 1px 3px);
+  color: var(--ink);
+  padding: 16px 20px 14px;
+  border: 1px solid #d3d0c4;
+  box-shadow: 0 2px 0 #cbc8bc, 0 22px 44px rgba(8, 12, 24, .5);
+  transform: rotate(1deg);
+}
+.mast-top { display: flex; justify-content: space-between; gap: 8px; font-size: 11px; letter-spacing: .12em; color: var(--ink-soft); border-bottom: 1px solid var(--ink); padding-bottom: 4px; font-variant-numeric: tabular-nums; }
+.mast-title { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 6px 0 4px; }
+.mast-title h1 { margin: 0; font-family: var(--f-serif); font-weight: 900; font-size: clamp(30px, 3.1vw, 42px); line-height: 1; letter-spacing: .01em; white-space: nowrap; }
+.stamp {
+  font-family: var(--f-serif); font-weight: 900; font-size: 16px; line-height: 1.1;
+  color: var(--paper); background: var(--cobalt);
+  padding: 5px 6px; box-shadow: inset 0 0 0 2px var(--paper), 0 0 0 2px var(--cobalt);
+  transform: rotate(-4deg); text-align: center; flex: none;
+}
+.mast-bar { display: flex; justify-content: space-between; gap: 8px; border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink); padding: 3px 0; font-size: 12px; font-weight: 700; letter-spacing: .06em; }
+
+.lead { padding: 12px 0 4px; }
+.kicker { display: inline-block; background: var(--ink); color: var(--paper); font-size: 11px; font-weight: 700; padding: 2px 7px; letter-spacing: .12em; }
+.lead h2 { font-family: var(--f-serif); font-weight: 900; font-size: 23px; line-height: 1.28; margin: 8px 0 4px; text-wrap: balance; overflow-wrap: anywhere; }
+.lead h2 a { color: inherit; text-decoration: none; }
+.lead h2 a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.byline { font-size: 11px; color: var(--ink-soft); letter-spacing: .04em; overflow-wrap: anywhere; }
+.deck { font-size: 13.5px; line-height: 1.65; margin: 8px 0 10px; overflow-wrap: anywhere; }
+
+.bars { border-top: 1px solid var(--paper-rule); padding-top: 8px; display: grid; gap: 3px; }
+.bars h4 { margin: 0 0 4px; font-size: 11px; letter-spacing: .14em; color: var(--ink-soft); font-weight: 700; }
+.bar {
+  display: grid; grid-template-columns: 7.2em minmax(0, 1fr) 4.4em; align-items: center; gap: 8px;
+  width: 100%; background: none; border: 0; padding: 2px 0; cursor: pointer;
+  font: inherit; font-size: 12px; color: inherit; text-align: left;
+}
+.bar .n { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar .track { height: 9px; background: rgba(27, 29, 36, .08); }
+.bar .fill { display: block; height: 100%; background: var(--ink); }
+.bar .v { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; }
+.bar.on .fill { background: var(--cobalt); }
+.bar.on .n { font-weight: 700; }
+
+.board h3 { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin: 14px 0 0; padding-bottom: 4px; border-bottom: 2px solid var(--ink); font-family: var(--f-serif); font-weight: 900; font-size: 15px; }
+.board h3 small { font-family: var(--f-sans); font-weight: 500; font-size: 11px; color: var(--ink-soft); letter-spacing: .08em; }
+.board ol { list-style: none; margin: 0; padding: 0; }
+.row {
+  display: grid; grid-template-columns: 2em minmax(0, 1fr) auto; gap: 0 10px; align-items: start;
+  width: 100%; text-align: left; background: none; border: 0; border-bottom: 1px solid var(--paper-rule);
+  padding: 8px 4px; font: inherit; color: inherit; cursor: pointer;
+}
+.row:hover { background: rgba(42, 85, 201, .07); }
+.row.on { background: rgba(255, 204, 61, .38); }
+.rk { font-family: var(--f-serif); font-weight: 900; font-size: 19px; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.nm { min-width: 0; }
+.nm b { display: block; font-size: 14px; line-height: 1.3; overflow-wrap: anywhere; }
+.nm small { display: block; font-size: 11.5px; color: var(--ink-soft); }
+.nm p { margin: 3px 0 0; font-size: 12px; line-height: 1.5; color: var(--ink-soft); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+.meta { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.gain { font-weight: 700; color: var(--cobalt); font-size: 13px; }
+.lang { display: inline-flex; align-items: center; gap: 4px; color: var(--ink-soft); font-size: 11px; }
+.lang i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+.skel { height: 54px; border-bottom: 1px solid var(--paper-rule); background: linear-gradient(90deg, transparent 0 2.6em, rgba(27, 29, 36, .07) 2.6em 70%, transparent 70%) no-repeat center / 100% 14px; }
+.more-btn { margin-top: 8px; font: inherit; font-size: 12px; color: var(--ink); background: transparent; border: 1px solid var(--ink); padding: 3px 12px; cursor: pointer; }
+.more-btn:hover { background: var(--ink); color: var(--paper); }
+
+.paper-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 12px; padding-top: 6px; border-top: 3px solid var(--ink); font-size: 11px; color: var(--ink-soft); }
+.pill { display: inline-flex; align-items: center; gap: 6px; padding: 1px 9px; border: 1px solid currentColor; border-radius: 99px; font-weight: 700; white-space: nowrap; }
+.pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.pill.live { color: var(--live); }
+.pill.wait { color: var(--warn); }
+.pill.err { color: var(--err); }
+
+@media (max-width: 899px) {
+  .stage { height: auto; overflow: visible; }
+  #town { position: relative; height: clamp(340px, 82vw, 500px); }
+  .overlay { position: static; display: flex; flex-direction: column; gap: 22px; padding-block: 0 28px; pointer-events: auto; }
+  .hud { position: absolute; top: 12px; left: max(16px, env(safe-area-inset-left, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); }
+  .hud-card { padding: 4px 9px; }
+  .hud-card b { font-size: 15px; }
+  .talk { margin-top: -84px; max-width: none; }
+  #npc { width: 112px; height: 132px; margin-right: -8px; }
+  .bubble { min-height: 132px; font-size: 16px; padding: 24px 14px 10px 18px; }
+  .paper { max-height: none; overflow: visible; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tbtn.next::after { animation: none; }
+}
+</style>
+
+<div class="stage" id="stage">
+  <canvas id="town" role="img" aria-label="星標鎮的等角地圖：GitHub 熱門專案被蓋成鎮上的大樓，越高代表新增的星星越多"></canvas>
+  <div class="overlay">
+    <header class="hud">
+      <div class="hud-card"><b>星標鎮</b><span>STARGAZER TOWN</span></div>
+      <div class="hud-card stat"><span id="hudStarsLabel">今日新星</span><b id="hudStars">—</b></div>
+      <div class="hud-card stat"><span>鎮上時間</span><b id="hudClock">--:--</b></div>
+    </header>
+
+    <section class="talk" aria-label="記者米拉的對話">
+      <canvas id="npc" width="160" height="188" aria-hidden="true"></canvas>
+      <div class="bubble" id="bubble">
+        <div class="who"><b>米拉</b><span>小鎮日報記者</span></div>
+        <p id="line" aria-hidden="true"></p>
+        <p class="sr" id="srLine" aria-live="polite"></p>
+        <div class="talk-foot">
+          <a id="repoLink" href="https://github.com/trending" target="_blank" rel="noopener" hidden></a>
+          <span class="step" id="step"></span>
+          <button class="tbtn" id="prevBtn" type="button" aria-label="上一句">‹</button>
+          <button class="tbtn next" id="nextBtn" type="button">下一句</button>
+        </div>
+      </div>
+    </section>
+
+    <article class="paper" id="paper" aria-label="小鎮日報">
+      <header class="mast">
+        <div class="mast-top"><span id="edNo">NO. —</span><span id="edDate"></span></div>
+        <div class="mast-title"><h1>TOWN DAILY</h1><div class="stamp">小鎮<br>日報</div></div>
+        <div class="mast-bar"><span id="edLabel">號外版</span><span id="edIssue"></span></div>
+      </header>
+      <section class="lead" id="lead"></section>
+      <section class="board">
+        <h3><span id="boardTitle">熱門榜</span><small id="boardUnit"></small></h3>
+        <ol id="list"></ol>
+        <button class="more-btn" id="moreBtn" type="button" hidden></button>
+      </section>
+      <footer class="paper-foot"><span id="srcLine"></span><span class="pill wait" id="pill">連線中</span></footer>
+    </article>
+  </div>
+</div>
+
+<script>
+(() => {
+'use strict';
+const $ = s => document.querySelector(s);
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const WIDE = matchMedia('(min-width: 900px)');
+const fmt = n => Number(n || 0).toLocaleString('en-US');
+const pad = n => String(n).padStart(2, '0');
+const REPO_RE = /^[\w.-]+\/[\w.-]+$/;
+const repoUrl = full => REPO_RE.test(full) ? 'https://github.com/' + full : null;
+const shortName = full => full.split('/')[1] || full;
+
+// GitHub linguist colours, used for chips and building facades
+const LANG = { TypeScript: '#3178c6', JavaScript: '#d4b030', Python: '#3a6ea5', Rust: '#b7563a', Go: '#00a3c7', Java: '#b07219', 'C++': '#d8457a', C: '#5c6670', 'C#': '#178600', PHP: '#4f5d95', CSS: '#663399', HTML: '#d9502b', Shell: '#6aa84f', Swift: '#e8603c', Kotlin: '#8e6ae6', Ruby: '#8c1d1d', Dart: '#00a59b', Vue: '#3fa676', 'Jupyter Notebook': '#d2691e', Lua: '#2c2d72', Zig: '#e0a325', Elixir: '#6e4a7e', Scala: '#c22d40', Nix: '#5277c3', MDX: '#d18b1f' };
+const langColor = l => LANG[l] || '#74808f';
+
+// ---------- colour + random helpers
+function hexRgb(h) { h = h.replace('#', ''); const n = parseInt(h, 16); return [n >> 16 & 255, n >> 8 & 255, n & 255]; }
+function rgbHex(a) { return '#' + a.map(v => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0')).join(''); }
+function mix(a, b, t) { const A = hexRgb(a), B = hexRgb(b); return rgbHex(A.map((v, i) => v + (B[i] - v) * t)); }
+function rng(seed) { let s = seed >>> 0; return () => { s = (s + 0x6D2B79F5) >>> 0; let t = s; t = Math.imul(t ^ t >>> 15, t | 1); t ^= t + Math.imul(t ^ t >>> 7, t | 61); return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function hsh(a, b, c, d) { let h = 2166136261 ^ a; h = Math.imul(h ^ b, 16777619); h = Math.imul(h ^ c, 16777619); h = Math.imul(h ^ d, 16777619); h ^= h >>> 13; h = Math.imul(h, 0x5bd1e995); h ^= h >>> 15; return (h >>> 0) / 4294967296; }
+
+// time of day tints the whole town
+let TOD = 'day';
+const TINT = { day: [1, 1, 1], dusk: [1, .83, .8], night: [.42, .48, .72] };
+const tintCache = new Map();
+function T(c) {
+  if (TOD === 'day') return c;
+  const k = TOD + c; let v = tintCache.get(k);
+  if (!v) { const m = TINT[TOD]; v = rgbHex(hexRgb(c).map((x, i) => x * m[i])); tintCache.set(k, v); }
+  return v;
+}
+const todFor = h => (h >= 6 && h < 17) ? 'day' : (h === 5 || (h >= 17 && h < 19)) ? 'dusk' : 'night';
+
+// ---------- state
+const S = { mode: null, via: '', status: 'loading', msg: '', stale: false, data: null, sig: '', sel: -1, hover: -1, showAll: false, script: [], idx: 0 };
+
+// ---------- town
+const cv = $('#town'), c2 = cv.getContext('2d');
+let W = 0, H = 0, DPR = 1, TW = 64, U = 1, OX = 0, OY = 0;
+const N = 12, ROADS = [3, 8];
+const isRoad = (x, y) => ROADS.includes(x) || ROADS.includes(y);
+const blk = v => v < 3 ? 0 : v < 8 ? 1 : 2;
+const tileType = (x, y) => isRoad(x, y) ? 'road' : (blk(x) === 1 || blk(y) === 1) ? 'plaza' : 'grass';
+// rank 1 sits on the central plaza, 2–5 on the civic blocks, 6–9 in the neighbourhoods
+const LOTS = [
+  { x: 5, y: 5, w: 2, d: 2 }, { x: 5, y: 0, w: 2, d: 2 }, { x: 0, y: 5, w: 2, d: 2 }, { x: 9, y: 5, w: 2, d: 2 }, { x: 5, y: 9, w: 2, d: 2 },
+  { x: 1, y: 1, w: 1, d: 1 }, { x: 10, y: 1, w: 1, d: 1 }, { x: 1, y: 10, w: 1, d: 1 }, { x: 10, y: 10, w: 1, d: 1 },
+];
+const P = (x, y, z = 0) => [OX + (x - y) * TW / 2, OY + (x + y) * TW / 4 - z * U];
+
+const scenery = [];
+(function buildScenery() {
+  const R = rng(20261026);
+  const taken = new Set();
+  LOTS.forEach(l => { for (let i = 0; i < l.w; i++) for (let j = 0; j < l.d; j++) taken.add((l.x + i) + ',' + (l.y + j)); });
+  const WALLS = ['#f1e3c8', '#e6d3b3', '#dde5ea', '#efd8d0', '#e4e0d0'];
+  const ROOFS = ['#b5523d', '#3f6e8c', '#5a7d4e', '#7d5a8c', '#c98a2e', '#4d5566'];
+  let id = 0;
+  for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
+    if (isRoad(x, y) || taken.has(x + ',' + y)) continue;
+    const r = R(), base = { x, y, cx: x + .5, cy: y + .5, id: id++ };
+    if (tileType(x, y) === 'grass') {
+      if (r < .6) scenery.push({ ...base, k: 'house', h: 18 + Math.floor(R() * 20), wall: WALLS[Math.floor(R() * WALLS.length)], roof: ROOFS[Math.floor(R() * ROOFS.length)], ridge: R() < .5 ? 'x' : 'y' });
+      else if (r < .9) scenery.push({ ...base, k: 'tree', s: .85 + R() * .3 });
+    } else {
+      if (r < .3) scenery.push({ ...base, k: 'tree', s: .8 + R() * .3 });
+      else if (r < .44) scenery.push({ ...base, k: 'lamp' });
+    }
+  }
+})();
+
+let towers = [];
+function buildTowers() {
+  const reps = S.data ? S.data.repos.slice(0, LOTS.length) : [];
+  const val = r => r.today ?? r.stars;
+  const max = Math.max(1, ...reps.map(val));
+  towers = LOTS.map((lot, i) => {
+    const base = { lot, i, cx: lot.x + lot.w / 2, cy: lot.y + lot.d / 2 };
+    const r = reps[i];
+    if (!r) return { ...base, k: 'lot' };
+    const big = lot.w === 2, col = langColor(r.lang);
+    const crown = mix(col, '#000000', .38);
+    return {
+      ...base, k: 'tower', name: shortName(r.full),
+      h: (big ? 58 : 34) + (big ? 112 : 46) * Math.sqrt(Math.max(0, val(r)) / max),
+      top: mix(col, '#ffffff', .5), left: mix(col, '#ffffff', .14), right: mix(col, '#000000', .22),
+      crown, crownR: mix(crown, '#000000', .2), glass: mix(col, '#e4f3fa', .72), glassDk: mix(col, '#bcd6e3', .5),
+    };
+  });
+}
+
+// walkers stroll the sidewalks and turn at crossings
+const SHIRTS = ['#e4572e', '#2a55c9', '#ffcc3d', '#3fa676', '#f4f1e6', '#7d5a8c', '#d8457a'];
+const walkers = Array.from({ length: 18 }, () => {
+  const w = { k: 'walker', axis: Math.random() < .5 ? 'x' : 'y', lane: ROADS[Math.random() < .5 ? 0 : 1], off: (Math.random() < .5 ? -1 : 1) * (.3 + Math.random() * .08), pos: .3 + Math.random() * 11.4, dir: Math.random() < .5 ? -1 : 1, sp: .35 + Math.random() * .35, c: SHIRTS[Math.floor(Math.random() * SHIRTS.length)], ph: Math.random() * 6 };
+  placeWalker(w); return w;
+});
+function placeWalker(w) {
+  const side = w.lane + .5 + w.off;
+  if (w.axis === 'x') { w.cx = w.pos; w.cy = side; } else { w.cx = side; w.cy = w.pos; }
+}
+function stepWalker(w, dt) {
+  const prev = w.pos;
+  w.pos += w.dir * w.sp * dt;
+  for (const r of ROADS) {
+    const c = r + .5;
+    if ((prev - c) * (w.pos - c) <= 0 && Math.random() < .35) {
+      const newPos = w.lane + .5 + w.off;
+      w.axis = w.axis === 'x' ? 'y' : 'x'; w.lane = r; w.pos = newPos; w.dir = Math.random() < .5 ? -1 : 1;
+      break;
+    }
+  }
+  if (w.pos < .2) { w.pos = .2; w.dir = 1; }
+  if (w.pos > 11.8) { w.pos = 11.8; w.dir = -1; }
+  placeWalker(w);
+}
+
+function fit() {
+  const s = cv.getBoundingClientRect();
+  W = s.width; H = s.height; DPR = Math.min(2, window.devicePixelRatio || 1);
+  cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
+  const hud = $('.hud').getBoundingClientRect();
+  let a;
+  if (WIDE.matches) {
+    const p = $('.paper').getBoundingClientRect(), t = $('.talk').getBoundingClientRect();
+    a = { x0: 0, x1: p.left - s.left - 16, y0: hud.bottom - s.top + 6, y1: t.top - s.top + 96 };
+  } else {
+    a = { x0: 0, x1: W, y0: hud.bottom - s.top + 2, y1: H - 54 };
+  }
+  const aw = Math.max(100, a.x1 - a.x0), ah = Math.max(100, a.y1 - a.y0);
+  TW = Math.max(18, Math.min(aw / 12.6, ah / 7.7)); U = TW / 64;
+  OX = a.x0 + aw / 2;
+  OY = a.y0 + 1.3 * TW + Math.max(0, (ah - 7.7 * TW) / 2);
+}
+
+function poly(pts, fill) {
+  c2.beginPath(); c2.moveTo(pts[0][0], pts[0][1]);
+  for (let i = 1; i < pts.length; i++) c2.lineTo(pts[i][0], pts[i][1]);
+  c2.closePath(); c2.fillStyle = fill; c2.fill();
+  c2.strokeStyle = fill; c2.lineWidth = .6; c2.stroke(); // hides seams between faces
+}
+function seg(a, b) { c2.moveTo(a[0], a[1]); c2.lineTo(b[0], b[1]); }
+function box(x0, y0, x1, y1, z0, z1, top, left, right) {
+  poly([P(x0, y1, z0), P(x1, y1, z0), P(x1, y1, z1), P(x0, y1, z1)], left);
+  poly([P(x1, y0, z0), P(x1, y1, z0), P(x1, y1, z1), P(x1, y0, z1)], right);
+  poly([P(x0, y0, z1), P(x1, y0, z1), P(x1, y1, z1), P(x0, y1, z1)], top);
+}
+
+const SKY = { day: ['#7db7dd', '#d3eaf4'], dusk: ['#414c80', '#efa36c'], night: ['#0c1530', '#26355e'] };
+const R0 = rng(7);
+const starsBg = Array.from({ length: 70 }, () => [R0(), R0() * .55, R0() < .2 ? 2 : 1, R0() * 40]);
+const clouds = Array.from({ length: 6 }, () => ({ x: R0(), y: .05 + R0() * .3, s: .6 + R0() * .7, v: 5 + R0() * 9 }));
+function drawSky(t) {
+  const [a, b] = SKY[TOD];
+  const gr = c2.createLinearGradient(0, 0, 0, H); gr.addColorStop(0, a); gr.addColorStop(1, b);
+  c2.fillStyle = gr; c2.fillRect(0, 0, W, H);
+  if (TOD === 'night') {
+    c2.fillStyle = '#ffffff';
+    for (const [x, y, r, p] of starsBg) { c2.globalAlpha = .3 + .35 * Math.sin(t / 900 + p); c2.fillRect(x * W, y * H, r, r); }
+    c2.globalAlpha = 1;
+  }
+  c2.fillStyle = TOD === 'night' ? 'rgba(190,200,230,.1)' : TOD === 'dusk' ? 'rgba(255,220,200,.35)' : 'rgba(255,255,255,.75)';
+  const k = Math.max(.6, TW / 64), span = W + 260;
+  for (const cl of clouds) {
+    const x = ((cl.x * span + (RM ? 0 : t / 1000 * cl.v)) % span) - 130, y = cl.y * H, s = cl.s * k;
+    for (const [dx, dy, rx, ry] of [[0, 0, 46, 14], [30, -8, 30, 13], [-28, -4, 26, 11]]) {
+      c2.beginPath(); c2.ellipse(x + dx * s, y + dy * s, rx * s, ry * s, 0, 0, Math.PI * 2); c2.fill();
+    }
+  }
+}
+
+function drawGround() {
+  const d = 16;
+  poly([P(0, N, 0), P(N, N, 0), P(N, N, -d), P(0, N, -d)], T('#8a6a4a'));
+  poly([P(N, 0, 0), P(N, N, 0), P(N, N, -d), P(N, 0, -d)], T('#6c5038'));
+  poly([P(0, N, 0), P(N, N, 0), P(N, N, -3), P(0, N, -3)], T('#5b8a44'));
+  poly([P(N, 0, 0), P(N, N, 0), P(N, N, -3), P(N, 0, -3)], T('#4c7738'));
+  for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
+    const ty = tileType(x, y);
+    const col = ty === 'road' ? '#5d6976' : ty === 'plaza' ? ((x + y) % 2 ? '#d6cdb9' : '#cfc5b0') : ((x + y) % 2 ? '#86b96a' : '#7caf60');
+    poly([P(x, y), P(x + 1, y), P(x + 1, y + 1), P(x, y + 1)], T(col));
+    if (ty === 'road') {
+      const vx = ROADS.includes(x), vy = ROADS.includes(y);
+      c2.strokeStyle = T('#e6dfc4'); c2.lineWidth = Math.max(1, 1.4 * U); c2.beginPath();
+      if (vx && !vy) seg(P(x + .5, y + .22), P(x + .5, y + .78));
+      else if (vy && !vx) seg(P(x + .22, y + .5), P(x + .78, y + .5));
+      else { for (let k = 0; k < 4; k++) { const f = .15 + k * .23; seg(P(x + f, y + .06), P(x + f + .1, y + .06)); seg(P(x + .94, y + f), P(x + .94, y + f + .1)); } }
+      c2.stroke();
+    }
+  }
+}
+
+let NOW = 0;
+function facadeWindows(o, id, x0, y0, x1, y1, z0, z1, cols, fh) {
+  const litP = TOD === 'night' ? .55 : TOD === 'dusk' ? .35 : 0;
+  let f = 0;
+  for (let z = z0; z + fh * .6 <= z1 - 3; z += fh, f++) {
+    for (let c = 0; c < cols; c++) for (let face = 0; face < 2; face++) {
+      const r = hsh(id, f, c, face);
+      let lit = r < litP;
+      if (lit && r > litP - .05 && !RM && Math.floor(NOW / 2600 + r * 97) % 3 === 0) lit = false;
+      const col = lit ? '#ffd56e' : TOD === 'day' ? (r > .78 ? o.glassDk : o.glass) : T('#2a3552');
+      const a = (c + .22) / cols, b = (c + .78) / cols, za = z, zb = z + fh * .58;
+      if (face === 0) { const xa = x0 + (x1 - x0) * a, xb = x0 + (x1 - x0) * b; poly([P(xa, y1, za), P(xb, y1, za), P(xb, y1, zb), P(xa, y1, zb)], col); }
+      else { const ya = y0 + (y1 - y0) * a, yb = y0 + (y1 - y0) * b; poly([P(x1, ya, za), P(x1, yb, za), P(x1, yb, zb), P(x1, ya, zb)], col); }
+    }
+  }
+}
+
+let hits = [], labels = [];
+function drawTower(o) {
+  const { lot } = o, x0 = lot.x + .14, x1 = lot.x + lot.w - .14, y0 = lot.y + .14, y1 = lot.y + lot.d - .14;
+  box(x0 - .07, y0 - .07, x1 + .07, y1 + .07, 0, 3, T('#d9d1bd'), T('#bdb39d'), T('#a59b85'));
+  if (o.k === 'lot') { box(x0, y0, x1, y1, 3, 7, T('#cfc7b2'), T('#b3a990'), T('#9d937b')); return; }
+  box(x0, y0, x1, y1, 3, o.h, T(o.top), T(o.left), T(o.right));
+  facadeWindows(o, o.i + 101, x0, y0, x1, y1, 10, o.h, lot.w === 2 ? 4 : 2, 12);
+  box(x0 + .12, y0 + .12, x1 - .12, y1 - .12, o.h, o.h + 6, T(o.top), T(o.crown), T(o.crownR));
+  const sel = S.sel === o.i, hov = S.hover === o.i;
+  if (sel || hov) {
+    c2.beginPath();
+    [P(x0, y1, 3), P(x1, y1, 3), P(x1, y0, 3), P(x1, y0, o.h), P(x0, y0, o.h), P(x0, y1, o.h)].forEach((p, k) => k ? c2.lineTo(p[0], p[1]) : c2.moveTo(p[0], p[1]));
+    c2.closePath(); c2.strokeStyle = sel ? '#ffcc3d' : 'rgba(255,255,255,.75)'; c2.lineWidth = 2; c2.stroke();
+  }
+  const [px, py] = P(o.cx, o.cy, o.h + 6);
+  const poleH = (sel ? 30 : 20) * U + 6;
+  c2.strokeStyle = T('#3b4252'); c2.lineWidth = Math.max(1, 1.2 * U);
+  c2.beginPath(); c2.moveTo(px, py); c2.lineTo(px, py - poleH); c2.stroke();
+  const br = Math.max(8, 9 * U) * (sel ? 1.25 : 1);
+  const by = py - poleH - br + (sel && !RM ? Math.sin(NOW / 260) * 2 : 0);
+  c2.beginPath(); c2.arc(px, by, br, 0, Math.PI * 2);
+  c2.fillStyle = sel ? '#ffcc3d' : '#f4f1e6'; c2.fill();
+  c2.lineWidth = 2; c2.strokeStyle = '#1c2336'; c2.stroke();
+  c2.fillStyle = '#1c2336'; c2.font = `${Math.round(br * 1.15)}px "DotGothic16", monospace`;
+  c2.textAlign = 'center'; c2.textBaseline = 'middle'; c2.fillText(String(o.i + 1), px, by + 1);
+  hits.push({ i: o.i, x0: P(x0, y1)[0] - 4, x1: P(x1, y0)[0] + 4, y0: by - br - 4, y1: P(x1, y1)[1] + 2, d: o.cx + o.cy });
+  if (sel || hov) labels.push({ text: o.name, x: px, y: by - br - 8, sel });
+}
+
+function drawHouse(o) {
+  const { x, y, h } = o, x0 = x + .2, x1 = x + .8, y0 = y + .2, y1 = y + .8, r = 13, e = .05;
+  const wl = T(o.wall), wr = T(mix(o.wall, '#000000', .16)), rf = T(o.roof), rfd = T(mix(o.roof, '#000000', .25));
+  box(x0, y0, x1, y1, 0, h, wl, wl, wr);
+  const lit = TOD !== 'day' && hsh(o.id, 7, 1, 2) < .7;
+  const wc = lit ? '#ffd56e' : T('#bcd9e6');
+  const fx = f => x0 + (x1 - x0) * f, fy = f => y0 + (y1 - y0) * f;
+  poly([P(fx(.18), y1, 0), P(fx(.42), y1, 0), P(fx(.42), y1, 10), P(fx(.18), y1, 10)], T('#5a4636'));
+  poly([P(fx(.6), y1, 7), P(fx(.84), y1, 7), P(fx(.84), y1, 14), P(fx(.6), y1, 14)], wc);
+  poly([P(x1, fy(.35), 7), P(x1, fy(.65), 7), P(x1, fy(.65), 14), P(x1, fy(.35), 14)], wc);
+  if (o.ridge === 'x') {
+    const ym = (y0 + y1) / 2;
+    poly([P(x0 - e, y0 - e, h), P(x1 + e, y0 - e, h), P(x1 + e, ym, h + r), P(x0 - e, ym, h + r)], rfd);
+    poly([P(x1, y0, h), P(x1, y1, h), P(x1, ym, h + r)], wr);
+    poly([P(x0 - e, y1 + e, h), P(x1 + e, y1 + e, h), P(x1 + e, ym, h + r), P(x0 - e, ym, h + r)], rf);
+  } else {
+    const xm = (x0 + x1) / 2;
+    poly([P(x0 - e, y0 - e, h), P(x0 - e, y1 + e, h), P(xm, y1 + e, h + r), P(xm, y0 - e, h + r)], rfd);
+    poly([P(x1 + e, y0 - e, h), P(x1 + e, y1 + e, h), P(xm, y1 + e, h + r), P(xm, y0 - e, h + r)], rf);
+    poly([P(x0, y1, h), P(x1, y1, h), P(xm, y1, h + r)], wl);
+  }
+}
+
+function disc(x, y, r, col) { c2.beginPath(); c2.arc(x, y, r, 0, Math.PI * 2); c2.fillStyle = col; c2.fill(); }
+function drawTree(o) {
+  const [px, py] = P(o.cx, o.cy), s = U * o.s;
+  c2.fillStyle = 'rgba(20,30,20,.18)'; c2.beginPath(); c2.ellipse(px, py, 10 * s, 5 * s, 0, 0, Math.PI * 2); c2.fill();
+  c2.fillStyle = T('#6b4a2f'); c2.fillRect(px - 1.6 * s, py - 11 * s, 3.2 * s, 11 * s);
+  disc(px, py - 19 * s, 10.5 * s, T('#4d8a3e'));
+  disc(px - 3 * s, py - 24 * s, 7.5 * s, T('#5f9f4b'));
+  disc(px - 4.5 * s, py - 26 * s, 3 * s, T('#80bd5f'));
+}
+function drawLamp(o) {
+  const [px, py] = P(o.cx, o.cy), top = py - 24 * U;
+  if (TOD !== 'day') {
+    const g = c2.createRadialGradient(px, top, 0, px, top, 26 * U);
+    g.addColorStop(0, 'rgba(255,214,120,.45)'); g.addColorStop(1, 'rgba(255,214,120,0)');
+    c2.fillStyle = g; c2.beginPath(); c2.arc(px, top, 26 * U, 0, Math.PI * 2); c2.fill();
+  }
+  c2.strokeStyle = T('#3b4252'); c2.lineWidth = Math.max(1, 1.5 * U);
+  c2.beginPath(); c2.moveTo(px, py); c2.lineTo(px, top); c2.stroke();
+  disc(px, top, Math.max(1.5, 2.6 * U), TOD === 'day' ? '#e8e3d0' : '#ffe39a');
+}
+function drawWalker(o, t) {
+  const [px, py] = P(o.cx, o.cy), s = Math.max(.5, U) * 1.15;
+  const sw = RM ? 0 : Math.sin(t / 110 + o.ph) * 1.6 * s;
+  c2.fillStyle = 'rgba(20,25,35,.22)'; c2.beginPath(); c2.ellipse(px, py, 3 * s, 1.5 * s, 0, 0, Math.PI * 2); c2.fill();
+  c2.strokeStyle = T('#2c3140'); c2.lineWidth = Math.max(1, s);
+  c2.beginPath(); c2.moveTo(px - .8 * s, py - 5 * s); c2.lineTo(px - .8 * s + sw, py); c2.moveTo(px + .8 * s, py - 5 * s); c2.lineTo(px + .8 * s - sw, py); c2.stroke();
+  c2.fillStyle = T(o.c); c2.fillRect(px - 1.8 * s, py - 10.5 * s, 3.6 * s, 6 * s);
+  disc(px, py - 12.6 * s, 2 * s, T('#f1c9a5'));
+}
+function drawLabel(l) {
+  c2.font = '13px "DotGothic16", monospace';
+  const tw = c2.measureText(l.text).width, w = tw + 16, h = 22;
+  const x = Math.max(4, Math.min(W - w - 4, l.x - w / 2)), y = Math.max(4, l.y - h);
+  c2.fillStyle = '#1c2336'; c2.fillRect(x, y, w, h);
+  c2.strokeStyle = l.sel ? '#ffcc3d' : '#f2e6c4'; c2.lineWidth = 2; c2.strokeRect(x + 1, y + 1, w - 2, h - 2);
+  c2.fillStyle = '#f4f1e6'; c2.textAlign = 'left'; c2.textBaseline = 'middle'; c2.fillText(l.text, x + 8, y + h / 2 + 1);
+}
+
+const DRAW = { tower: drawTower, lot: drawTower, house: drawHouse, tree: drawTree, lamp: drawLamp, walker: drawWalker };
+
+function pickTower(mx, my) {
+  let best = null;
+  for (const h of hits) if (mx >= h.x0 && mx <= h.x1 && my >= h.y0 && my <= h.y1 && (!best || h.d > best.d)) best = h;
+  return best ? best.i : -1;
+}
+cv.addEventListener('pointermove', e => {
+  const r = cv.getBoundingClientRect();
+  S.hover = pickTower(e.clientX - r.left, e.clientY - r.top);
+  cv.style.cursor = S.hover >= 0 ? 'pointer' : 'default';
+});
+cv.addEventListener('pointerleave', () => { S.hover = -1; });
+cv.addEventListener('click', e => {
+  const r = cv.getBoundingClientRect();
+  const i = pickTower(e.clientX - r.left, e.clientY - r.top);
+  if (i >= 0) selectRepo(i, true);
+});
+
+// ---------- reporter sprite (original pixel art, drawn at 40×46 and scaled ×4)
+const npc = $('#npc'), n2 = npc.getContext('2d');
+const SW = 40, SH = 46, SC = 4;
+const spriteCache = new Map();
+function sprite(blink, talk) {
+  const key = (blink ? 1 : 0) + (talk ? 2 : 0);
+  if (spriteCache.has(key)) return spriteCache.get(key);
+  const g = Array.from({ length: SH }, () => Array(SW).fill(null));
+  const set = (x, y, c) => { x |= 0; y |= 0; if (x >= 0 && y >= 0 && x < SW && y < SH) g[y][x] = c; };
+  const rect = (x, y, w, h, c) => { for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) set(x + i, y + j, c); };
+  const ell = (cx, cy, rx, ry, c, clip) => {
+    for (let y = Math.floor(cy - ry); y <= cy + ry; y++) for (let x = Math.floor(cx - rx); x <= cx + rx; x++) {
+      const dx = (x + .5 - cx) / rx, dy = (y + .5 - cy) / ry;
+      if (dx * dx + dy * dy <= 1 && (!clip || clip(x, y))) set(x, y, c);
+    }
+  };
+  const C = { hair: '#4a2f2a', hairHi: '#6e4637', skin: '#f5cfae', skinSh: '#e0a98a', eye: '#2a1c24', white: '#ffffff', blush: '#f19c95', mouth: '#a8434f', navy: '#2b3a6b', navySh: '#1f2b52', shirt: '#f3f1ea', beret: '#2a55c9', beretHi: '#4e78e6', gold: '#ffcc3d', out: '#1d1620' };
+  ell(20, 18, 13.5, 13.5, C.hair); rect(7, 18, 26, 13, C.hair);                         // hair back + bob
+  for (let y = 33; y < SH; y++) { const hw = Math.min(19, 7 + (y - 33) * 1.6); rect(Math.round(20 - hw), y, Math.round(hw * 2), 1, C.navy); if (y > 35) rect(Math.round(20 + hw - 3), y, 3, 1, C.navySh); }
+  for (let y = 33; y < 42; y++) { const w = 4.5 - (y - 33) * .55; if (w > 0) rect(Math.round(20 - w), y, Math.round(w * 2), 1, C.shirt); }
+  rect(17, 27, 6, 7, C.skinSh);                                                          // neck
+  set(23, 34, C.beret); set(24, 35, C.beret); set(24, 36, C.beret); set(25, 37, C.beret); // lanyard
+  rect(25, 38, 7, 6, C.gold); rect(26, 40, 5, 1, C.navySh); rect(26, 42, 3, 1, C.navySh); // press card
+  ell(20, 19, 10.2, 10.2, C.skin);                                                       // face
+  rect(15, 28, 10, 1, C.skinSh);
+  rect(10, 7, 20, 5, C.hair);                                                            // bangs
+  [4, 3, 2, 3, 4, 2, 1, 2, 3, 4, 3, 2, 1, 2, 3, 4, 2, 3, 4, 5].forEach((len, i) => rect(10 + i, 12, 1, len, C.hair));
+  rect(8, 12, 3, 18, C.hair); rect(29, 12, 3, 18, C.hair);                               // side locks
+  rect(13, 9, 5, 1, C.hairHi); rect(12, 10, 2, 1, C.hairHi);
+  ell(18, 6, 12, 5.5, C.beret, (x, y) => y <= 8); rect(17, 0, 2, 1, C.beret);            // beret
+  rect(12, 3, 6, 1, C.beretHi); rect(8, 8, 22, 1, C.navySh);
+  if (blink) { rect(14, 20, 3, 1, C.eye); rect(23, 20, 3, 1, C.eye); }
+  else { rect(14, 17, 3, 4, C.eye); rect(23, 17, 3, 4, C.eye); set(14, 17, C.white); set(23, 17, C.white); }
+  rect(13, 15, 4, 1, C.hair); rect(23, 15, 4, 1, C.hair);                                 // brows
+  rect(11, 22, 2, 1, C.blush); rect(27, 22, 2, 1, C.blush);
+  if (talk) rect(19, 24, 3, 2, C.mouth); else rect(19, 25, 2, 1, C.mouth);
+  const out = g.map(r => r.slice());
+  for (let y = 0; y < SH; y++) for (let x = 0; x < SW; x++) {
+    if (g[y][x]) continue;
+    if ((g[y - 1] && g[y - 1][x]) || (g[y + 1] && g[y + 1][x]) || g[y][x - 1] || g[y][x + 1]) out[y][x] = C.out;
+  }
+  const c = document.createElement('canvas'); c.width = SW * SC; c.height = SH * SC;
+  const x2 = c.getContext('2d');
+  for (let y = 0; y < SH; y++) for (let x = 0; x < SW; x++) if (out[y][x]) { x2.fillStyle = out[y][x]; x2.fillRect(x * SC, y * SC, SC, SC); }
+  spriteCache.set(key, c);
+  return c;
+}
+let npcKey = '';
+function drawNPC(t) {
+  const blink = (t % 3800) < 150, talk = typing && !RM && Math.floor(t / 120) % 2 === 0;
+  const bob = RM ? 0 : Math.floor(t / 700) % 2;
+  const key = `${blink}${talk}${bob}`;
+  if (key === npcKey) return;
+  npcKey = key;
+  n2.clearRect(0, 0, npc.width, npc.height);
+  n2.imageSmoothingEnabled = false;
+  n2.drawImage(sprite(blink, talk), 0, 4 - bob * 2);
+}
+
+// ---------- main loop
+let last = 0;
+function frame(t) {
+  NOW = t;
+  const dt = Math.min(.05, (t - last) / 1000 || 0); last = t;
+  if (W > 0 && H > 0) {
+    c2.setTransform(DPR, 0, 0, DPR, 0, 0);
+    drawSky(t); drawGround();
+    if (!RM) walkers.forEach(w => stepWalker(w, dt));
+    const objs = scenery.concat(towers, walkers).sort((a, b) => (a.cx + a.cy) - (b.cx + b.cy));
+    hits = []; labels = [];
+    for (const o of objs) DRAW[o.k](o, t);
+    labels.forEach(drawLabel);
+  }
+  drawNPC(t);
+  requestAnimationFrame(frame);
+}
+
+// ---------- dialogue
+const lineEl = $('#line'), srEl = $('#srLine');
+let full = '', shown = 0, typing = false, tTimer = 0;
+function say(text) {
+  clearTimeout(tTimer);
+  full = text; shown = 0; srEl.textContent = text;
+  if (RM) { finishType(); return; }
+  typing = true; lineEl.textContent = ''; tick();
+}
+function tick() {
+  if (!typing) return;
+  shown++; lineEl.textContent = full.slice(0, shown);
+  if (shown >= full.length) { finishType(); return; }
+  tTimer = setTimeout(tick, /[，。！？：、」]/.test(full[shown - 1]) ? 150 : 34);
+}
+function finishType() { typing = false; clearTimeout(tTimer); lineEl.textContent = full; }
+
+function greeting() { const h = new Date().getHours(); return h >= 5 && h < 11 ? '早安' : h >= 11 && h < 18 ? '午安' : '晚上好'; }
+function buildScript(isUpdate) {
+  if (S.status === 'loading') return [{ text: '報紙還在印，等我一下喔⋯⋯' }];
+  if (S.status === 'empty') return [{ text: '今天的報紙還沒送到。榜單每天會自動更新一次，晚點再來看看！' }];
+  if (S.status === 'error') return [{ text: `糟糕，抓不到 GitHub 的資料（${S.msg}）。我等一下會自己再試一次。` }];
+  const d = S.data, reps = d.repos, trend = d.source !== 'search', n = Math.min(reps.length, LOTS.length);
+  const gain = r => trend ? (r.today || 0) : r.stars;
+  let top = 0; reps.forEach((r, i) => { if (gain(r) > gain(reps[top])) top = i; });
+  const L = [];
+  if (d.offline) L.push({ text: `現在連不上 GitHub（${S.msg || '網路不通'}），先給你看 ${stamp(whenOf())} 存檔的榜單。我每 5 分鐘會再試一次。想看最新榜單，請用「開啟星標鎮.bat」打開。` });
+  else if (isUpdate) L.push({ text: '號外！榜單剛剛更新了，新的排名我已經蓋好了。' });
+  L.push({ text: `${greeting()}！我是小鎮日報的記者米拉。${trend ? 'GitHub 今天的熱門榜' : '這週 GitHub 上最紅的新專案'}，前 ${n} 名都蓋成鎮上的大樓了。` });
+  L.push({ text: trend
+    ? `前 ${reps.length} 名今天一共多了 ${fmt(reps.reduce((s, r) => s + (r.today || 0), 0))} 顆星。漲最多的是 ${reps[top].full}，頭條就給它了。`
+    : `漲最快的是 ${reps[top].full}，一週就收了 ${fmt(reps[top].stars)} 顆星，頭條就給它了。`, repo: top });
+  L.push({ text: '點鎮上的大樓，或報紙上的專案名字，我就跟你聊那一個。按「下一句」我從第一名開始講。' });
+  for (let i = 0; i < Math.min(reps.length, 10); i++) {
+    const r = reps[i];
+    const lang = r.lang ? `主要用 ${r.lang} 寫，` : '';
+    const g = trend ? `今天多了 ${fmt(r.today)} 顆星，累計 ${fmt(r.stars)} 顆。` : `這週才建立，已經有 ${fmt(r.stars)} 顆星。`;
+    L.push({ repo: i, text: `第 ${i + 1} 名：${r.full}。${lang}${g}` });
+    if (r.desc) L.push({ repo: i, text: `它的介紹寫著：「${r.desc.length > 110 ? r.desc.slice(0, 108) + '⋯' : r.desc}」` });
+  }
+  L.push({ text: S.mode === 'db' || S.via === 'daily' ? '今天的榜單就到這裡。報紙每天自動更新，明天見！' : '今天的榜單就到這裡。我每 30 分鐘會再去 GitHub 看一次。' });
+  return L;
+}
+function showLine() {
+  const L = S.script[S.idx]; if (!L) return;
+  S.sel = L.repo ?? -1;
+  say(L.text);
+  $('#step').textContent = S.script.length > 1 ? `${S.idx + 1} / ${S.script.length}` : '';
+  const link = $('#repoLink'), r = S.sel >= 0 && S.data ? S.data.repos[S.sel] : null, url = r && repoUrl(r.full);
+  link.hidden = !url;
+  if (url) { link.href = url; link.textContent = `在 GitHub 看 ${shortName(r.full)} ↗`; }
+  syncSel();
+}
+function step(dir) {
+  if (typing && dir > 0) { finishType(); return; }
+  const n = S.script.length; if (!n) return;
+  S.idx = (S.idx + dir + n) % n; showLine();
+}
+function selectRepo(i, fromTown) {
+  const k = S.script.findIndex(l => l.repo === i && /^第 /.test(l.text));
+  if (k < 0) return;
+  S.idx = k; showLine();
+  if (fromTown && WIDE.matches) { const row = document.querySelector(`.row[data-i="${i}"]`); if (row) row.scrollIntoView({ block: 'nearest', behavior: RM ? 'auto' : 'smooth' }); }
+}
+function syncSel() {
+  document.querySelectorAll('[data-i]').forEach(e => e.classList.toggle('on', Number(e.dataset.i) === S.sel));
+}
+$('#bubble').addEventListener('click', e => { if (!e.target.closest('a,button')) step(1); });
+$('#nextBtn').addEventListener('click', () => step(1));
+$('#prevBtn').addEventListener('click', () => step(-1));
+document.addEventListener('keydown', e => {
+  if (e.target.closest && e.target.closest('input,textarea,button,a')) return;
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); step(1); }
+  else if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
+});
+
+// ---------- newspaper
+function el(tag, props, ...kids) {
+  const e = document.createElement(tag);
+  if (props) for (const [k, v] of Object.entries(props)) {
+    if (k === 'class') e.className = v;
+    else if (k === 'style') e.style.cssText = v;
+    else if (k.startsWith('on')) e.addEventListener(k.slice(2), v);
+    else if (v != null && v !== false) e.setAttribute(k, v === true ? '' : v);
+  }
+  for (const k of kids.flat()) if (k != null && k !== false) e.append(k instanceof Node ? k : String(k));
+  return e;
+}
+const WEEK = '日一二三四五六';
+const dateZh = d => `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日 星期${WEEK[d.getDay()]}`;
+const issueNo = d => Math.max(1, Math.floor((d - new Date(2025, 0, 1)) / 864e5) + 1);
+const stamp = d => `${d.getMonth() + 1}/${d.getDate()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+function whenOf() { const d = S.data && S.data.updatedAt ? new Date(S.data.updatedAt) : new Date(); return isNaN(d) ? new Date() : d; }
+
+function renderPaper() {
+  const ok = S.status === 'ok' && S.data, when = whenOf();
+  $('#edDate').textContent = dateZh(when);
+  $('#edNo').textContent = `NO. ${issueNo(when)}`;
+  $('#edIssue').textContent = `第 ${issueNo(when)} 期`;
+  const lead = $('#lead'), list = $('#list'), more = $('#moreBtn');
+  lead.replaceChildren(); list.replaceChildren();
+  if (!ok) {
+    $('#edLabel').textContent = '號外版';
+    const [h, p] = S.status === 'loading' ? ['今天的報紙印刷中', '榜單正在送來，馬上就好。']
+      : S.status === 'empty' ? ['榜單尚未送達', '今天的 GitHub 熱門榜還沒送到。資料每天自動更新一次，晚點再來看看。']
+      : ['暫時停刊', `抓不到 GitHub 的資料（${S.msg}）。稍後會自動重試。`];
+    lead.append(el('span', { class: 'kicker' }, '號外'), el('h2', null, h), el('p', { class: 'deck' }, p));
+    $('#boardTitle').textContent = '熱門榜'; $('#boardUnit').textContent = '';
+    for (let i = 0; i < 5; i++) list.append(el('li', { class: 'skel', 'aria-hidden': 'true' }));
+    more.hidden = true;
+    renderFoot(); renderHud();
+    return;
+  }
+  const d = S.data, reps = d.repos, trend = d.source !== 'search';
+  const gain = r => trend ? (r.today || 0) : r.stars;
+  $('#edLabel').textContent = trend ? 'GitHub 今日熱門版' : 'GitHub 本週新星版';
+
+  let top = 0; reps.forEach((r, i) => { if (gain(r) > gain(reps[top])) top = i; });
+  const r = reps[top], url = repoUrl(r.full);
+  const head = trend ? `${shortName(r.full)} 一天狂收 ${fmt(r.today)} 顆星` : `${shortName(r.full)} 一週衝上 ${fmt(r.stars)} 顆星`;
+  const top5 = reps.slice(0, 5), max = Math.max(1, ...top5.map(gain));
+  lead.append(
+    el('span', { class: 'kicker' }, top === 0 ? '頭條' : `頭條 · 榜上第 ${top + 1} 名`),
+    el('h2', null, url ? el('a', { href: url, target: '_blank', rel: 'noopener' }, head) : head),
+    el('div', { class: 'byline' }, `記者 米拉／星標鎮報導 · ${r.full} · ${r.lang || '未標語言'} · 累計 ★ ${fmt(r.stars)}`),
+    r.desc ? el('p', { class: 'deck' }, r.desc) : null,
+    el('div', { class: 'bars', role: 'group', 'aria-label': trend ? '前五名今日新增星數' : '前五名累計星數' },
+      el('h4', null, trend ? '前五名 · 今日新增星數' : '前五名 · 累計星數'),
+      top5.map((x, i) => el('button', { class: 'bar', type: 'button', 'data-i': i, onclick: () => selectRepo(i), 'aria-label': `${x.full}，${trend ? '今日新增' : '累計'} ${fmt(gain(x))} 顆星` },
+        el('span', { class: 'n' }, shortName(x.full)),
+        el('span', { class: 'track' }, el('span', { class: 'fill', style: `width:${(gain(x) / max * 100).toFixed(1)}%` })),
+        el('span', { class: 'v' }, (trend ? '+' : '') + fmt(gain(x)))))
+    )
+  );
+
+  $('#boardTitle').textContent = `熱門榜 TOP ${Math.min(reps.length, S.showAll ? 10 : 5)}`;
+  $('#boardUnit').textContent = trend ? '★ 今日新增 / 累計' : '★ 累計';
+  reps.slice(0, S.showAll ? 10 : 5).forEach((x, i) => {
+    const [owner, name] = x.full.split('/');
+    list.append(el('li', null, el('button', { class: 'row', type: 'button', 'data-i': i, onclick: () => selectRepo(i) },
+      el('span', { class: 'rk' }, pad(i + 1)),
+      el('span', { class: 'nm' }, el('b', null, name || x.full), el('small', null, owner || ''), x.desc ? el('p', null, x.desc) : null),
+      el('span', { class: 'meta' },
+        trend ? el('span', { class: 'gain' }, '+' + fmt(x.today)) : null,
+        el('span', null, '★ ' + fmt(x.stars)),
+        x.lang ? el('span', { class: 'lang', style: `--c:${langColor(x.lang)}` }, el('i'), x.lang) : null))));
+  });
+  more.hidden = reps.length <= 5;
+  more.textContent = S.showAll ? '收起' : `再看 ${Math.min(reps.length, 10) - 5} 則`;
+  renderFoot(); renderHud(); syncSel();
+}
+$('#moreBtn').addEventListener('click', () => { S.showAll = !S.showAll; renderPaper(); });
+
+function renderFoot() {
+  const pill = $('#pill'), src = $('#srcLine'), ok = S.status === 'ok' && S.data;
+  const offline = ok && S.data.offline;
+  const via = offline ? `內建存檔（github.com/trending）` : S.via === 'search' ? 'GitHub Search API（近 7 天新建專案）' : 'github.com/trending';
+  src.textContent = ok ? `資料來源：${via} · ${offline ? '存檔於' : '更新於'} ${stamp(whenOf())}` : `資料來源：${via}`;
+  let cls = 'wait', txt = '連線中';
+  if (S.status === 'error' || S.stale) { cls = 'err'; txt = S.stale ? '更新失敗，顯示上一版' : '連線失敗'; }
+  else if (S.status === 'empty') { txt = '等待今日資料'; }
+  else if (offline) { cls = 'err'; txt = '離線 · 顯示存檔'; }
+  else if (ok) { cls = 'live'; txt = S.mode === 'db' || S.via === 'daily' ? '每日自動更新' : '即時 · 每 30 分鐘'; }
+  pill.title = offline && S.msg ? `連不上的原因：${S.msg}` : '';
+  pill.className = 'pill ' + cls; pill.textContent = txt;
+}
+function renderHud() {
+  const ok = S.status === 'ok' && S.data;
+  const trend = ok && S.data.source !== 'search';
+  $('#hudStarsLabel').textContent = !ok ? '今日新星' : trend ? '今日新星' : '榜上星數';
+  $('#hudStars').textContent = !ok ? '—' : '★ ' + fmt(S.data.repos.reduce((s, r) => s + (trend ? (r.today || 0) : r.stars), 0));
+}
+function tickClock() {
+  const d = new Date();
+  $('#hudClock').textContent = `${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  const tod = todFor(d.getHours());
+  if (tod !== TOD) TOD = tod;
+}
+
+// ---------- data
+function normalize(raw) {
+  const repos = (Array.isArray(raw && raw.repos) ? raw.repos : [])
+    .filter(r => r && typeof r.full === 'string' && r.full.includes('/'))
+    .slice(0, 10)
+    .map(r => ({ full: String(r.full), desc: String(r.desc || ''), lang: String(r.lang || ''), stars: Number(r.stars) || 0, forks: Number(r.forks) || 0, today: r.today == null ? null : Number(r.today) || 0 }));
+  return { source: raw && raw.source === 'search' ? 'search' : 'trending', offline: !!(raw && raw.offline), updatedAt: String((raw && raw.updatedAt) || ''), repos };
+}
+function setStatus(st, msg) {
+  if (st === 'error' && S.data) { S.stale = true; S.msg = msg; renderFoot(); return; }
+  S.status = st; S.msg = msg || '';
+  if (st !== 'ok') { S.data = null; S.sig = ''; }
+  buildTowers(); renderPaper();
+  S.script = buildScript(false); S.idx = 0; showLine();
+}
+function setData(d) {
+  const sig = JSON.stringify(d);
+  if (sig === S.sig) { if (S.stale) { S.stale = false; renderFoot(); } return; }
+  const isUpdate = !!S.data;
+  S.data = d; S.sig = sig; S.status = 'ok'; S.stale = false;
+  buildTowers(); renderPaper();
+  S.script = buildScript(isUpdate); S.idx = 0; showLine();
+}
+
+// Last trending list saved with this file; shown only when every live source fails
+const SNAPSHOT = { source: 'trending', offline: true, updatedAt: '2026-10-26T03:40:00+08:00', repos: [
+  { full: 'makecindy/cindy', desc: 'Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。', lang: 'TypeScript', stars: 4728, forks: 652, today: 677 },
+  { full: 'Nutlope/hallmark', desc: 'Anti-AI-slop design skill for Claude Code, Cursor, and Codex.', lang: 'CSS', stars: 33468, forks: 1741, today: 1359 },
+  { full: 'debpalash/VoiceStudio', desc: 'Open-source, fully-local ElevenLabs alternative: voice cloning, voice design, video dubbing, dictation, transcription and audiobook creation.', lang: 'Python', stars: 86439, forks: 9581, today: 1588 },
+  { full: 'pbakaus/impeccable', desc: 'The design language that makes your AI harness better at design.', lang: 'Rust', stars: 87485, forks: 5223, today: 1113 },
+  { full: 'pollen-robotics/microduck', desc: 'A Tiny biped duck robot', lang: 'Rust', stars: 11525, forks: 1471, today: 657 },
+  { full: 'TauricResearch/TradingAgents', desc: 'TradingAgents: Multi-Agents LLM Financial Trading Framework', lang: 'Python', stars: 114376, forks: 22120, today: 636 },
+  { full: 'Renhuai123/ziwei-doushu', desc: '紫微斗数开源排盘引擎，含完整排盘算法、四化系统、格局知识库', lang: 'TypeScript', stars: 7506, forks: 1538, today: 255 },
+  { full: 'JetBrains/thinkrail', desc: 'Vibe code with pi in a lightweight, real IDE that customises itself around the way you work', lang: 'TypeScript', stars: 1334, forks: 93, today: 52 },
+  { full: 'coollabsio/coolify', desc: 'An open-source, self-hostable PaaS alternative to Vercel, Heroku & Netlify.', lang: 'PHP', stars: 64180, forks: 5768, today: 192 },
+  { full: 'cloudflare/security-audit-skill', desc: 'A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings', lang: 'JavaScript', stars: 46544, forks: 2892, today: 2874 },
+] };
+
+// 1) server.py's api/trending (live), 2) trending.json (refreshed daily by GitHub Actions),
+// 3) GitHub search API, 4) the saved snapshot
+async function fromJson(path, label) {
+  if (!/^https?:$/.test(location.protocol)) throw new Error('直接開檔案時讀不到網路資料');
+  const res = await fetch(path, { cache: 'no-store' });
+  if (!res.ok) throw new Error(`${label} HTTP ${res.status}`);
+  return normalize(await res.json());
+}
+const fromLocalServer = () => fromJson('api/trending', '本機伺服器');
+const fromDailyFile = () => fromJson('trending.json', 'trending.json');
+async function fromSearchApi() {
+  const since = new Date(Date.now() - 7 * 864e5).toISOString().slice(0, 10);
+  const res = await fetch(`https://api.github.com/search/repositories?q=${encodeURIComponent('created:>' + since)}&sort=stars&order=desc&per_page=10`);
+  if (!res.ok) throw new Error(res.status === 403 || res.status === 429 ? 'GitHub 暫時限制查詢次數' : `GitHub HTTP ${res.status}`);
+  const j = await res.json();
+  return normalize({ source: 'search', updatedAt: new Date().toISOString(), repos: (j.items || []).map(it => ({ full: it.full_name, desc: it.description, lang: it.language, stars: it.stargazers_count, forks: it.forks_count, today: null })) });
+}
+let directTimer = 0;
+async function fetchDirect() {
+  clearTimeout(directTimer);
+  const reasons = [];
+  for (const [via, load] of [['server', fromLocalServer], ['daily', fromDailyFile], ['search', fromSearchApi]]) {
+    try {
+      const d = await load();
+      if (!d.repos.length) throw new Error('榜單是空的');
+      S.via = via; setData(d);
+      directTimer = setTimeout(fetchDirect, 30 * 60 * 1000);
+      return;
+    } catch (e) {
+      reasons.push(e && e.message && e.message !== 'Failed to fetch' ? e.message : '連不上網路');
+    }
+  }
+  S.via = 'snapshot'; S.msg = reasons[reasons.length - 1];
+  setData(normalize(SNAPSHOT));
+  directTimer = setTimeout(fetchDirect, 5 * 60 * 1000);
+}
+
+async function startData() {
+  for (let i = 0; i < 4 && !(window.claude && typeof window.claude.use === 'function'); i++) await new Promise(r => setTimeout(r, 150));
+  if (window.claude && typeof window.claude.use === 'function') {
+    let db = null;
+    try { db = await window.claude.use('db'); } catch (e) { db = null; }
+    if (db) {
+      S.mode = 'db'; renderFoot();
+      db.doc('trending/daily').onSnapshot(snap => {
+        if (!snap.exists) { setStatus('empty'); return; }
+        const d = normalize(snap.data());
+        if (!d.repos.length) setStatus('empty'); else setData(d);
+      }, err => setStatus('error', err && err.code === 'revoked' ? '這個頁面已沒有讀取權限' : '資料連線中斷，重新整理頁面試試'));
+      return;
+    }
+  }
+  S.mode = 'direct'; renderFoot();
+  fetchDirect();
+}
+
+// ---------- boot
+tickClock(); setInterval(tickClock, 15000);
+buildTowers(); renderPaper();
+S.script = buildScript(false); showLine();
+fit();
+new ResizeObserver(fit).observe($('#stage'));
+WIDE.addEventListener('change', fit);
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+requestAnimationFrame(frame);
+startData();
+})();
+</script>
