@@ -1,36 +1,36 @@
 {
  "source": "trending",
- "updatedAt": "2026-10-27T10:24:37.897739+00:00",
+ "updatedAt": "2026-10-27T10:31:44.083955+00:00",
  "repos": [
   {
    "full": "Nutlope/hallmark",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        Nutlope /\n\n      hallmark  \n\n    \n      Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
    "lang": "CSS",
-   "stars": 37691,
-   "forks": 1964,
+   "stars": 37705,
+   "forks": 1965,
    "today": 2244
   },
   {
    "full": "TauricResearch/TradingAgents",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        TauricResearch /\n\n      TradingAgents  \n\n    \n      TradingAgents: Multi-Agents LLM Financial Trading Framework",
    "lang": "Python",
-   "stars": 116854,
-   "forks": 22380,
+   "stars": 116864,
+   "forks": 22384,
    "today": 1395
   },
   {
    "full": "JetBrains/thinkrail",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        JetBrains /\n\n      thinkrail  \n\n    \n      Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need",
    "lang": "TypeScript",
-   "stars": 3416,
-   "forks": 181,
+   "stars": 3422,
+   "forks": 182,
    "today": 1173
   },
   {
    "full": "makecindy/cindy",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        makecindy /\n\n      cindy  \n\n    \n      Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。",
    "lang": "TypeScript",
-   "stars": 7052,
+   "stars": 7054,
    "forks": 847,
    "today": 1296
   },
@@ -38,15 +38,15 @@
    "full": "affaan-m/ECC",
    "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        affaan-m /\n\n      ECC  \n\n    \n      The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
    "lang": "JavaScript",
-   "stars": 290259,
-   "forks": 43011,
+   "stars": 290267,
+   "forks": 43012,
    "today": 896
   },
   {
    "full": "pbakaus/impeccable",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        pbakaus /\n\n      impeccable  \n\n    \n      The design language that makes your AI harness better at design.",
    "lang": "Rust",
-   "stars": 89765,
+   "stars": 89770,
    "forks": 5336,
    "today": 1506
   },
@@ -54,7 +54,7 @@
    "full": "NVIDIA/SkillSpector",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        NVIDIA /\n\n      SkillSpector  \n\n    \n      Security scanner for AI agent skills. Detect vulnerabilities, malicious patterns, security risks, prompt injection, data exfiltration, and supply-chain risks in Claude Code, Codex, and MCP skills before you install them.",
    "lang": "Python",
-   "stars": 22600,
+   "stars": 22605,
    "forks": 1963,
    "today": 214
   },
@@ -62,15 +62,15 @@
    "full": "pollen-robotics/microduck",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        pollen-robotics /\n\n      microduck  \n\n    \n      A Tiny biped duck robot 🦆",
    "lang": "Rust",
-   "stars": 12661,
-   "forks": 1565,
+   "stars": 12663,
+   "forks": 1566,
    "today": 843
   },
   {
    "full": "nightly-labs/openbot",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        nightly-labs /\n\n      openbot  \n\n    \n      A local-first desktop workspace for persistent AI teammates. Run Codex, Claude, and Grok with dedicated workspaces, task queues, file sharing, browser control, and agent-to-agent collaboration.",
    "lang": "TypeScript",
-   "stars": 1797,
+   "stars": 1806,
    "forks": 212,
    "today": 176
   },
@@ -78,7 +78,7 @@
    "full": "Panniantong/Agent-Reach",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        Panniantong /\n\n      Agent-Reach  \n\n    \n      Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
    "lang": "Python",
-   "stars": 104392,
+   "stars": 104397,
    "forks": 9253,
    "today": 746
   }
