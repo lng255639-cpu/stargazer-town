@@ -1,86 +1,86 @@
 {
  "source": "trending",
- "updatedAt": "2026-10-29T06:38:30.201533+00:00",
+ "updatedAt": "2026-10-30T06:38:20.081285+00:00",
  "repos": [
   {
-   "full": "JetBrains/thinkrail",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        JetBrains /\n\n      thinkrail  \n\n    \n      Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need",
-   "lang": "TypeScript",
-   "stars": 5376,
-   "forks": 273,
-   "today": 1068
-  },
-  {
-   "full": "elayadesign/ai-design-skills",
-   "desc": "",
-   "lang": "",
-   "stars": 11429,
-   "forks": 825,
-   "today": 2139
+   "full": "HKUDS/DeepTutor",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        HKUDS /\n\n      DeepTutor  \n\n    \n      DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/.",
+   "lang": "Python",
+   "stars": 50736,
+   "forks": 6237,
+   "today": 1930
   },
   {
    "full": "obra/superpowers",
    "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        obra /\n\n      superpowers  \n\n    \n      An agentic skills framework & software development methodology that works.",
    "lang": "Shell",
-   "stars": 307666,
-   "forks": 27366,
-   "today": 1095
-  },
-  {
-   "full": "HKUDS/DeepTutor",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        HKUDS /\n\n      DeepTutor  \n\n    \n      DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/.",
-   "lang": "Python",
-   "stars": 48550,
-   "forks": 6016,
-   "today": 2371
-  },
-  {
-   "full": "macro-inc/macro",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        macro-inc /\n\n      macro  \n\n    \n      Macro is a unified workspace for teams: email, chat, docs, tasks, agents, calls, and CRM — @-linked together with shared AI memory.",
-   "lang": "Rust",
-   "stars": 5548,
-   "forks": 527,
-   "today": 117
-  },
-  {
-   "full": "Nutlope/hallmark",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        Nutlope /\n\n      hallmark  \n\n    \n      Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
-   "lang": "CSS",
-   "stars": 41058,
-   "forks": 2132,
-   "today": 2110
+   "stars": 308833,
+   "forks": 27470,
+   "today": 1034
   },
   {
    "full": "pbakaus/impeccable",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        pbakaus /\n\n      impeccable  \n\n    \n      The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships.",
    "lang": "Rust",
-   "stars": 93426,
-   "forks": 5514,
-   "today": 1472
+   "stars": 95870,
+   "forks": 5646,
+   "today": 2870
   },
   {
-   "full": "makecindy/cindy",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        makecindy /\n\n      cindy  \n\n    \n      Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。",
+   "full": "JetBrains/thinkrail",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        JetBrains /\n\n      thinkrail  \n\n    \n      Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need",
    "lang": "TypeScript",
-   "stars": 8300,
-   "forks": 971,
-   "today": 728
+   "stars": 6183,
+   "forks": 337,
+   "today": 1117
+  },
+  {
+   "full": "milind-soni/OpenMausBot",
+   "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        milind-soni /\n\n      OpenMausBot  \n\n    \n      Open-source Grok Bot alternative with a virtual machine that bots can use",
+   "lang": "TypeScript",
+   "stars": 7682,
+   "forks": 1132,
+   "today": 1199
   },
   {
    "full": "nightly-labs/openbot",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        nightly-labs /\n\n      openbot  \n\n    \n      A local-first desktop workspace for persistent AI teammates. Run Codex, Claude, and Grok with dedicated workspaces, task queues, file sharing, browser control, and agent-to-agent collaboration.",
    "lang": "TypeScript",
-   "stars": 3440,
-   "forks": 330,
-   "today": 1054
+   "stars": 4020,
+   "forks": 368,
+   "today": 709
+  },
+  {
+   "full": "elayadesign/ai-design-skills",
+   "desc": "",
+   "lang": "",
+   "stars": 12465,
+   "forks": 904,
+   "today": 1187
+  },
+  {
+   "full": "thedotmack/claude-mem",
+   "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        thedotmack /\n\n      claude-mem  \n\n    \n      Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
+   "lang": "TypeScript",
+   "stars": 105051,
+   "forks": 9259,
+   "today": 336
+  },
+  {
+   "full": "CopilotKit/OpenBot",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        CopilotKit /\n\n      OpenBot  \n\n    \n      Open-source AI coworkers that each get a computer of their own: a browser, files and tools, with every action decided before it happens and recorded after. Bring any AG-UI agent.",
+   "lang": "TypeScript",
+   "stars": 8314,
+   "forks": 1058,
+   "today": 247
   },
   {
    "full": "togg53192-cmd/jailbreaks",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        togg53192-cmd /\n\n      jailbreaks  \n\n    \n      LIST OF ALL MY JAILBREAKS",
    "lang": "",
-   "stars": 7522,
-   "forks": 1071,
-   "today": 1477
+   "stars": 9534,
+   "forks": 1330,
+   "today": 1594
   }
  ]
 }
