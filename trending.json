@@ -1,86 +1,86 @@
 {
  "source": "trending",
- "updatedAt": "2026-11-06T07:29:56.596558+00:00",
+ "updatedAt": "2026-11-07T06:42:40.646418+00:00",
  "repos": [
+  {
+   "full": "zed-industries/zed",
+   "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        zed-industries /\n\n      zed  \n\n    \n      Code at the speed of thought – Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.",
+   "lang": "Rust",
+   "stars": 93832,
+   "forks": 11512,
+   "today": 306
+  },
   {
    "full": "NVIDIA/auto-ontology",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        NVIDIA /\n\n      auto-ontology  \n\n    \n      Auto Ontology is a Python framework for building semantic, graph-based reasoning layers over data. It enables deterministic query generation, better context retrieval, and more explainable AI for LLM and agent workflows.",
    "lang": "Python",
-   "stars": 7915,
-   "forks": 637,
-   "today": 2679
+   "stars": 9332,
+   "forks": 739,
+   "today": 2015
   },
   {
-   "full": "mattpocock/skills",
-   "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        mattpocock /\n\n      skills  \n\n    \n      Skills for Real Engineers. Straight from my .agents directory.",
-   "lang": "Shell",
-   "stars": 315764,
-   "forks": 26429,
-   "today": 2071
+   "full": "rails/rails",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        rails /\n\n      rails  \n\n    \n      Ruby on Rails",
+   "lang": "Ruby",
+   "stars": 59058,
+   "forks": 23833,
+   "today": 142
   },
   {
-   "full": "garrytan/gstack",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        garrytan /\n\n      gstack  \n\n    \n      Use Garry Tan's exact Claude Code setup: 23 opinionated tools that serve as CEO, Designer, Eng Manager, Release Manager, Doc Engineer, and QA",
-   "lang": "TypeScript",
-   "stars": 140168,
-   "forks": 20708,
-   "today": 612
-  },
-  {
-   "full": "Usagi-org/ai-goofish-monitor",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        Usagi-org /\n\n      ai-goofish-monitor  \n\n    \n      基于 Playwright 和AI实现的闲鱼多任务实时/定时监控与智能分析系统，配备了功能完善的后台管理UI。帮助用户从闲鱼海量商品中，找到心仪产品。",
-   "lang": "Python",
-   "stars": 17952,
-   "forks": 2974,
-   "today": 240
-  },
-  {
-   "full": "D4Vinci/Scrapling",
-   "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        D4Vinci /\n\n      Scrapling  \n\n    \n      🕷️ The BEST Web Scraping framework that handles everything from a single request to a full-scale crawl! Don't be shy, join here: https://discord.gg/EMgGbDceNQ and follow here for daily tips and tricks: https://x.com/Scrapling_dev",
-   "lang": "Python",
-   "stars": 98357,
-   "forks": 10302,
-   "today": 1655
-  },
-  {
-   "full": "vercel-labs/agent-desktop",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        vercel-labs /\n\n      agent-desktop  \n\n    \n      Computer use CLI for AI agents",
-   "lang": "Rust",
-   "stars": 17363,
-   "forks": 1236,
-   "today": 2173
-  },
-  {
-   "full": "max-sixty/worktrunk",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        max-sixty /\n\n      worktrunk  \n\n    \n      Worktrunk is a CLI for Git worktree management, designed for parallel AI agent workflows",
-   "lang": "Rust",
-   "stars": 11656,
-   "forks": 447,
-   "today": 546
-  },
-  {
-   "full": "lz4/lz4",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        lz4 /\n\n      lz4  \n\n    \n      Extremely Fast Compression algorithm",
+   "full": "mpv-player/mpv",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        mpv-player /\n\n      mpv  \n\n    \n      🎥 Command line media player",
    "lang": "C",
-   "stars": 12472,
-   "forks": 1640,
-   "today": 23
+   "stars": 37934,
+   "forks": 3635,
+   "today": 37
+  },
+  {
+   "full": "rust-lang/rust",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        rust-lang /\n\n      rust  \n\n    \n      Empowering everyone to build reliable and efficient software.",
+   "lang": "Rust",
+   "stars": 121520,
+   "forks": 17369,
+   "today": 192
+  },
+  {
+   "full": "react/react",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        react /\n\n      react  \n\n    \n      The library for web and native user interfaces.",
+   "lang": "JavaScript",
+   "stars": 252307,
+   "forks": 51830,
+   "today": 248
+  },
+  {
+   "full": "angular/angular",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        angular /\n\n      angular  \n\n    \n      Deliver web apps with confidence 🚀",
+   "lang": "TypeScript",
+   "stars": 101422,
+   "forks": 28914,
+   "today": 135
+  },
+  {
+   "full": "symfony/symfony",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        symfony /\n\n      symfony  \n\n    \n      The Symfony PHP framework",
+   "lang": "PHP",
+   "stars": 31478,
+   "forks": 9950,
+   "today": 128
+  },
+  {
+   "full": "prometheus/prometheus",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        prometheus /\n\n      prometheus  \n\n    \n      The Prometheus monitoring system and time series database.",
+   "lang": "Go",
+   "stars": 67241,
+   "forks": 10991,
+   "today": 148
   },
   {
    "full": "google/skills",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        google /\n\n      skills  \n\n    \n      Agent Skills for Google products and technologies",
    "lang": "Python",
-   "stars": 22528,
-   "forks": 1897,
-   "today": 211
-  },
-  {
-   "full": "vercel-labs/agent-browser",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        vercel-labs /\n\n      agent-browser  \n\n    \n      Browser automation CLI for AI agents",
-   "lang": "Rust",
-   "stars": 46104,
-   "forks": 3155,
-   "today": 150
+   "stars": 22952,
+   "forks": 1929,
+   "today": 534
   }
  ]
 }
