@@ -1,86 +1,86 @@
 {
  "source": "trending",
- "updatedAt": "2026-11-07T06:42:40.646418+00:00",
+ "updatedAt": "2026-11-08T06:49:15.374954+00:00",
  "repos": [
   {
-   "full": "zed-industries/zed",
-   "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        zed-industries /\n\n      zed  \n\n    \n      Code at the speed of thought – Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.",
+   "full": "vercel-labs/agent-browser",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        vercel-labs /\n\n      agent-browser  \n\n    \n      Browser automation CLI for AI agents",
    "lang": "Rust",
-   "stars": 93832,
-   "forks": 11512,
-   "today": 306
+   "stars": 47023,
+   "forks": 3222,
+   "today": 190
   },
   {
-   "full": "NVIDIA/auto-ontology",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        NVIDIA /\n\n      auto-ontology  \n\n    \n      Auto Ontology is a Python framework for building semantic, graph-based reasoning layers over data. It enables deterministic query generation, better context retrieval, and more explainable AI for LLM and agent workflows.",
-   "lang": "Python",
-   "stars": 9332,
-   "forks": 739,
-   "today": 2015
-  },
-  {
-   "full": "rails/rails",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        rails /\n\n      rails  \n\n    \n      Ruby on Rails",
-   "lang": "Ruby",
-   "stars": 59058,
-   "forks": 23833,
-   "today": 142
-  },
-  {
-   "full": "mpv-player/mpv",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        mpv-player /\n\n      mpv  \n\n    \n      🎥 Command line media player",
-   "lang": "C",
-   "stars": 37934,
-   "forks": 3635,
-   "today": 37
-  },
-  {
-   "full": "rust-lang/rust",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        rust-lang /\n\n      rust  \n\n    \n      Empowering everyone to build reliable and efficient software.",
-   "lang": "Rust",
-   "stars": 121520,
-   "forks": 17369,
-   "today": 192
-  },
-  {
-   "full": "react/react",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        react /\n\n      react  \n\n    \n      The library for web and native user interfaces.",
+   "full": "cloudflare/security-audit-skill",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        cloudflare /\n\n      security-audit-skill  \n\n    \n      A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
    "lang": "JavaScript",
-   "stars": 252307,
-   "forks": 51830,
-   "today": 248
-  },
-  {
-   "full": "angular/angular",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        angular /\n\n      angular  \n\n    \n      Deliver web apps with confidence 🚀",
-   "lang": "TypeScript",
-   "stars": 101422,
-   "forks": 28914,
-   "today": 135
-  },
-  {
-   "full": "symfony/symfony",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        symfony /\n\n      symfony  \n\n    \n      The Symfony PHP framework",
-   "lang": "PHP",
-   "stars": 31478,
-   "forks": 9950,
-   "today": 128
-  },
-  {
-   "full": "prometheus/prometheus",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        prometheus /\n\n      prometheus  \n\n    \n      The Prometheus monitoring system and time series database.",
-   "lang": "Go",
-   "stars": 67241,
-   "forks": 10991,
-   "today": 148
+   "stars": 66051,
+   "forks": 4296,
+   "today": 2085
   },
   {
    "full": "google/skills",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        google /\n\n      skills  \n\n    \n      Agent Skills for Google products and technologies",
    "lang": "Python",
-   "stars": 22952,
-   "forks": 1929,
-   "today": 534
+   "stars": 23531,
+   "forks": 1967,
+   "today": 443
+  },
+  {
+   "full": "mattpocock/skills",
+   "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        mattpocock /\n\n      skills  \n\n    \n      Skills for Real Engineers. Straight from my .agents directory.",
+   "lang": "Shell",
+   "stars": 317943,
+   "forks": 26604,
+   "today": 1100
+  },
+  {
+   "full": "anthropics/skills",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        anthropics /\n\n      skills  \n\n    \n      Public repository for Agent Skills",
+   "lang": "Python",
+   "stars": 188942,
+   "forks": 22271,
+   "today": 390
+  },
+  {
+   "full": "meta/astryx",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        meta /\n\n      astryx  \n\n    \n      An open source design system that's fully customizable and agent ready",
+   "lang": "TypeScript",
+   "stars": 14769,
+   "forks": 1210,
+   "today": 96
+  },
+  {
+   "full": "prometheus/prometheus",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        prometheus /\n\n      prometheus  \n\n    \n      The Prometheus monitoring system and time series database.",
+   "lang": "Go",
+   "stars": 67491,
+   "forks": 11011,
+   "today": 322
+  },
+  {
+   "full": "sherlock-project/sherlock",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        sherlock-project /\n\n      sherlock  \n\n    \n      Hunt down social media accounts by username across social networks",
+   "lang": "Python",
+   "stars": 101107,
+   "forks": 11951,
+   "today": 1766
+  },
+  {
+   "full": "milind-soni/OpenMausBot",
+   "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        milind-soni /\n\n      OpenMausBot  \n\n    \n      Open-source Grok Bot alternative with a virtual machine that bots can use",
+   "lang": "TypeScript",
+   "stars": 17318,
+   "forks": 2439,
+   "today": 1955
+  },
+  {
+   "full": "astral-sh/ruff",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        astral-sh /\n\n      ruff  \n\n    \n      An extremely fast Python linter and code formatter, written in Rust.",
+   "lang": "Rust",
+   "stars": 51031,
+   "forks": 2634,
+   "today": 350
   }
  ]
 }
