@@ -1,86 +1,78 @@
 {
  "source": "trending",
- "updatedAt": "2026-11-08T06:49:15.374954+00:00",
+ "updatedAt": "2026-11-09T07:26:53.772251+00:00",
  "repos": [
-  {
-   "full": "vercel-labs/agent-browser",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        vercel-labs /\n\n      agent-browser  \n\n    \n      Browser automation CLI for AI agents",
-   "lang": "Rust",
-   "stars": 47023,
-   "forks": 3222,
-   "today": 190
-  },
-  {
-   "full": "cloudflare/security-audit-skill",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        cloudflare /\n\n      security-audit-skill  \n\n    \n      A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
-   "lang": "JavaScript",
-   "stars": 66051,
-   "forks": 4296,
-   "today": 2085
-  },
-  {
-   "full": "google/skills",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        google /\n\n      skills  \n\n    \n      Agent Skills for Google products and technologies",
-   "lang": "Python",
-   "stars": 23531,
-   "forks": 1967,
-   "today": 443
-  },
-  {
-   "full": "mattpocock/skills",
-   "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        mattpocock /\n\n      skills  \n\n    \n      Skills for Real Engineers. Straight from my .agents directory.",
-   "lang": "Shell",
-   "stars": 317943,
-   "forks": 26604,
-   "today": 1100
-  },
-  {
-   "full": "anthropics/skills",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        anthropics /\n\n      skills  \n\n    \n      Public repository for Agent Skills",
-   "lang": "Python",
-   "stars": 188942,
-   "forks": 22271,
-   "today": 390
-  },
-  {
-   "full": "meta/astryx",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        meta /\n\n      astryx  \n\n    \n      An open source design system that's fully customizable and agent ready",
-   "lang": "TypeScript",
-   "stars": 14769,
-   "forks": 1210,
-   "today": 96
-  },
-  {
-   "full": "prometheus/prometheus",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        prometheus /\n\n      prometheus  \n\n    \n      The Prometheus monitoring system and time series database.",
-   "lang": "Go",
-   "stars": 67491,
-   "forks": 11011,
-   "today": 322
-  },
   {
    "full": "sherlock-project/sherlock",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        sherlock-project /\n\n      sherlock  \n\n    \n      Hunt down social media accounts by username across social networks",
    "lang": "Python",
-   "stars": 101107,
-   "forks": 11951,
-   "today": 1766
+   "stars": 104907,
+   "forks": 12222,
+   "today": 2373
+  },
+  {
+   "full": "dsx-ai-factory/nvke",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        dsx-ai-factory /\n\n      nvke  \n\n    \n      NVIDIA Kubernetes Engine (NVKE). A management plane for GPU Kubernetes on bare metal.",
+   "lang": "Go",
+   "stars": 949,
+   "forks": 113,
+   "today": 345
   },
   {
    "full": "milind-soni/OpenMausBot",
    "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        milind-soni /\n\n      OpenMausBot  \n\n    \n      Open-source Grok Bot alternative with a virtual machine that bots can use",
    "lang": "TypeScript",
-   "stars": 17318,
-   "forks": 2439,
-   "today": 1955
+   "stars": 18824,
+   "forks": 2593,
+   "today": 1439
   },
   {
-   "full": "astral-sh/ruff",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        astral-sh /\n\n      ruff  \n\n    \n      An extremely fast Python linter and code formatter, written in Rust.",
+   "full": "anthropics/claude-quickstarts",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        anthropics /\n\n      claude-quickstarts  \n\n    \n      A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API",
+   "lang": "Python",
+   "stars": 19612,
+   "forks": 3288,
+   "today": 32
+  },
+  {
+   "full": "vercel-labs/agent-browser",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        vercel-labs /\n\n      agent-browser  \n\n    \n      Browser automation CLI for AI agents",
    "lang": "Rust",
-   "stars": 51031,
-   "forks": 2634,
-   "today": 350
+   "stars": 47918,
+   "forks": 3273,
+   "today": 815
+  },
+  {
+   "full": "meta/astryx",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        meta /\n\n      astryx  \n\n    \n      An open source design system that's fully customizable and agent ready",
+   "lang": "TypeScript",
+   "stars": 17742,
+   "forks": 1389,
+   "today": 875
+  },
+  {
+   "full": "anthropics/skills",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        anthropics /\n\n      skills  \n\n    \n      Public repository for Agent Skills",
+   "lang": "Python",
+   "stars": 189946,
+   "forks": 22378,
+   "today": 792
+  },
+  {
+   "full": "google-deepmind/mujoco",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        google-deepmind /\n\n      mujoco  \n\n    \n      Multi-Joint dynamics with Contact. A general purpose physics simulator.",
+   "lang": "C++",
+   "stars": 16595,
+   "forks": 1960,
+   "today": 41
+  },
+  {
+   "full": "ranxianglei/billion-context",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        ranxianglei /\n\n      billion-context  \n\n    \n      A context-compression plugin for month-long single sessions (billions of tokens) ,small context windows (a 100K context is enough) and token savings (5x fewer tokens) .上下文压缩插件，月级长会话会话， 兼顾小窗口(100k上下文足矣)省token(省5倍token) . billion-context is all you need",
+   "lang": "TypeScript",
+   "stars": 5414,
+   "forks": 418,
+   "today": 460
   }
  ]
 }
