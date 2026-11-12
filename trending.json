@@ -1,86 +1,86 @@
 {
  "source": "trending",
- "updatedAt": "2026-11-11T07:22:04.986407+00:00",
+ "updatedAt": "2026-11-12T07:52:19.548263+00:00",
  "repos": [
   {
    "full": "meta/astryx",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        meta /\n\n      astryx  \n\n    \n      An open source design system that's fully customizable and agent ready",
    "lang": "TypeScript",
-   "stars": 23657,
-   "forks": 1857,
-   "today": 3108
+   "stars": 25599,
+   "forks": 1992,
+   "today": 2776
   },
   {
-   "full": "anthropics/skills",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        anthropics /\n\n      skills  \n\n    \n      Public repository for Agent Skills",
+   "full": "ZhuLinsen/daily_stock_analysis",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        ZhuLinsen /\n\n      daily_stock_analysis  \n\n    \n      LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs.",
    "lang": "Python",
-   "stars": 192627,
-   "forks": 22673,
-   "today": 1679
+   "stars": 70761,
+   "forks": 57009,
+   "today": 278
+  },
+  {
+   "full": "GoogleChrome/modern-web-guidance-src",
+   "desc": "",
+   "lang": "TypeScript",
+   "stars": 2035,
+   "forks": 151,
+   "today": 159
+  },
+  {
+   "full": "shadcn/improve",
+   "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        shadcn /\n\n      improve  \n\n    \n      Use your most capable model to audit your codebase and write plans for cheaper models to execute.",
+   "lang": "",
+   "stars": 11200,
+   "forks": 454,
+   "today": 361
   },
   {
    "full": "addyosmani/agent-skills",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        addyosmani /\n\n      agent-skills  \n\n    \n      Production-grade engineering skills for AI coding agents.",
    "lang": "JavaScript",
-   "stars": 115387,
-   "forks": 12110,
-   "today": 465
-  },
-  {
-   "full": "anthropics/claude-quickstarts",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        anthropics /\n\n      claude-quickstarts  \n\n    \n      A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API",
-   "lang": "Python",
-   "stars": 20636,
-   "forks": 3477,
-   "today": 531
-  },
-  {
-   "full": "google-deepmind/mujoco",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        google-deepmind /\n\n      mujoco  \n\n    \n      Multi-Joint dynamics with Contact. A general purpose physics simulator.",
-   "lang": "C++",
-   "stars": 17498,
-   "forks": 2159,
-   "today": 456
-  },
-  {
-   "full": "we-promise/sure",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        we-promise /\n\n      sure  \n\n    \n      The personal finance app for everyone (by everyone)",
-   "lang": "Ruby",
-   "stars": 12260,
-   "forks": 908,
-   "today": 159
-  },
-  {
-   "full": "homeassistant-ai/ha-mcp",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        homeassistant-ai /\n\n      ha-mcp  \n\n    \n      Configure and automate Home Assistant with Claude, ChatGPT, and other AI assistants.",
-   "lang": "Python",
-   "stars": 6830,
-   "forks": 439,
-   "today": 790
+   "stars": 116180,
+   "forks": 12174,
+   "today": 787
   },
   {
    "full": "vercel-labs/agent-browser",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        vercel-labs /\n\n      agent-browser  \n\n    \n      Browser automation CLI for AI agents",
    "lang": "Rust",
-   "stars": 49449,
-   "forks": 3463,
-   "today": 780
+   "stars": 50064,
+   "forks": 3494,
+   "today": 708
   },
   {
-   "full": "sherlock-project/sherlock",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        sherlock-project /\n\n      sherlock  \n\n    \n      Hunt down social media accounts by username across social networks",
+   "full": "we-promise/sure",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        we-promise /\n\n      sure  \n\n    \n      The personal finance app for everyone (by everyone)",
+   "lang": "Ruby",
+   "stars": 13239,
+   "forks": 977,
+   "today": 1078
+  },
+  {
+   "full": "homeassistant-ai/ha-mcp",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        homeassistant-ai /\n\n      ha-mcp  \n\n    \n      Configure and automate Home Assistant with Claude, ChatGPT, and other AI assistants.",
    "lang": "Python",
-   "stars": 109436,
-   "forks": 12693,
-   "today": 2393
+   "stars": 7560,
+   "forks": 459,
+   "today": 645
   },
   {
-   "full": "tokio-rs/topcoat",
-   "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        tokio-rs /\n\n      topcoat  \n\n    \n      A batteries-included framework for building web apps",
-   "lang": "Rust",
-   "stars": 6975,
-   "forks": 309,
-   "today": 192
+   "full": "openai/codex-security",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        openai /\n\n      codex-security  \n\n    \n      OpenAI's Codex Security CLI and TypeScript SDK for finding, validating, and fixing security vulnerabilities. npm: https://www.npmjs.com/package/@openai/codex-security",
+   "lang": "TypeScript",
+   "stars": 11951,
+   "forks": 952,
+   "today": 52
+  },
+  {
+   "full": "TheAlgorithms/Java",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        TheAlgorithms /\n\n      Java  \n\n    \n      All Algorithms implemented in Java",
+   "lang": "Java",
+   "stars": 67158,
+   "forks": 21519,
+   "today": 51
   }
  ]
 }
