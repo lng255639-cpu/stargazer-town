@@ -1,86 +1,86 @@
 {
  "source": "trending",
- "updatedAt": "2026-11-12T07:52:19.548263+00:00",
+ "updatedAt": "2026-11-13T07:28:33.728361+00:00",
  "repos": [
   {
-   "full": "meta/astryx",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        meta /\n\n      astryx  \n\n    \n      An open source design system that's fully customizable and agent ready",
-   "lang": "TypeScript",
-   "stars": 25599,
-   "forks": 1992,
-   "today": 2776
-  },
-  {
-   "full": "ZhuLinsen/daily_stock_analysis",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        ZhuLinsen /\n\n      daily_stock_analysis  \n\n    \n      LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs.",
-   "lang": "Python",
-   "stars": 70761,
-   "forks": 57009,
-   "today": 278
-  },
-  {
    "full": "GoogleChrome/modern-web-guidance-src",
-   "desc": "",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        GoogleChrome /\n\n      modern-web-guidance-src  \n\n    \n      Keep your coding agent up to date with the latest web best practices",
    "lang": "TypeScript",
-   "stars": 2035,
-   "forks": 151,
-   "today": 159
-  },
-  {
-   "full": "shadcn/improve",
-   "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        shadcn /\n\n      improve  \n\n    \n      Use your most capable model to audit your codebase and write plans for cheaper models to execute.",
-   "lang": "",
-   "stars": 11200,
-   "forks": 454,
-   "today": 361
-  },
-  {
-   "full": "addyosmani/agent-skills",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        addyosmani /\n\n      agent-skills  \n\n    \n      Production-grade engineering skills for AI coding agents.",
-   "lang": "JavaScript",
-   "stars": 116180,
-   "forks": 12174,
-   "today": 787
-  },
-  {
-   "full": "vercel-labs/agent-browser",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        vercel-labs /\n\n      agent-browser  \n\n    \n      Browser automation CLI for AI agents",
-   "lang": "Rust",
-   "stars": 50064,
-   "forks": 3494,
-   "today": 708
-  },
-  {
-   "full": "we-promise/sure",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        we-promise /\n\n      sure  \n\n    \n      The personal finance app for everyone (by everyone)",
-   "lang": "Ruby",
-   "stars": 13239,
-   "forks": 977,
-   "today": 1078
-  },
-  {
-   "full": "homeassistant-ai/ha-mcp",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        homeassistant-ai /\n\n      ha-mcp  \n\n    \n      Configure and automate Home Assistant with Claude, ChatGPT, and other AI assistants.",
-   "lang": "Python",
-   "stars": 7560,
-   "forks": 459,
-   "today": 645
+   "stars": 3669,
+   "forks": 225,
+   "today": 739
   },
   {
    "full": "openai/codex-security",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        openai /\n\n      codex-security  \n\n    \n      OpenAI's Codex Security CLI and TypeScript SDK for finding, validating, and fixing security vulnerabilities. npm: https://www.npmjs.com/package/@openai/codex-security",
    "lang": "TypeScript",
-   "stars": 11951,
-   "forks": 952,
-   "today": 52
+   "stars": 12670,
+   "forks": 991,
+   "today": 643
   },
   {
-   "full": "TheAlgorithms/Java",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        TheAlgorithms /\n\n      Java  \n\n    \n      All Algorithms implemented in Java",
-   "lang": "Java",
-   "stars": 67158,
-   "forks": 21519,
-   "today": 51
+   "full": "nvm-sh/nvm",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        nvm-sh /\n\n      nvm  \n\n    \n      Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions.",
+   "lang": "Shell",
+   "stars": 96065,
+   "forks": 10761,
+   "today": 63
+  },
+  {
+   "full": "pookjw/HermesEnabler",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        pookjw /\n\n      HermesEnabler  \n\n    \n      Enable Hermès Watch Faces on any Apple Watch devices",
+   "lang": "Objective-C",
+   "stars": 1653,
+   "forks": 145,
+   "today": 218
+  },
+  {
+   "full": "we-promise/sure",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        we-promise /\n\n      sure  \n\n    \n      The personal finance app for everyone (by everyone)",
+   "lang": "Ruby",
+   "stars": 14192,
+   "forks": 1069,
+   "today": 967
+  },
+  {
+   "full": "QwenLM/qwen-code",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        QwenLM /\n\n      qwen-code  \n\n    \n      An open-source AI coding agent that lives in your terminal.",
+   "lang": "TypeScript",
+   "stars": 29991,
+   "forks": 3410,
+   "today": 151
+  },
+  {
+   "full": "ashhart/TensorFold",
+   "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        ashhart /\n\n      TensorFold  \n\n    \n      LLM Inference Engine for Metal, CUDA and Vulkan.",
+   "lang": "Zig",
+   "stars": 2021,
+   "forks": 397,
+   "today": 54
+  },
+  {
+   "full": "nodejs/node",
+   "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        nodejs /\n\n      node  \n\n    \n      Node.js JavaScript runtime ✨🐢🚀✨",
+   "lang": "JavaScript",
+   "stars": 123657,
+   "forks": 38060,
+   "today": 62
+  },
+  {
+   "full": "addyosmani/agent-skills",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        addyosmani /\n\n      agent-skills  \n\n    \n      Production-grade engineering skills for AI coding agents.",
+   "lang": "JavaScript",
+   "stars": 116862,
+   "forks": 12220,
+   "today": 816
+  },
+  {
+   "full": "meta/astryx",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        meta /\n\n      astryx  \n\n    \n      An open source design system that's fully customizable and agent ready",
+   "lang": "TypeScript",
+   "stars": 26906,
+   "forks": 2086,
+   "today": 1830
   }
  ]
 }
