@@ -1,86 +1,86 @@
 {
  "source": "trending",
- "updatedAt": "2026-11-13T07:28:33.728361+00:00",
+ "updatedAt": "2026-11-14T07:11:50.058068+00:00",
  "repos": [
+  {
+   "full": "alibaba/open-code-review",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        alibaba /\n\n      open-code-review  \n\n    \n      Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible.",
+   "lang": "Go",
+   "stars": 50854,
+   "forks": 3786,
+   "today": 215
+  },
   {
    "full": "GoogleChrome/modern-web-guidance-src",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        GoogleChrome /\n\n      modern-web-guidance-src  \n\n    \n      Keep your coding agent up to date with the latest web best practices",
    "lang": "TypeScript",
-   "stars": 3669,
-   "forks": 225,
-   "today": 739
+   "stars": 5095,
+   "forks": 279,
+   "today": 1925
   },
   {
    "full": "openai/codex-security",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        openai /\n\n      codex-security  \n\n    \n      OpenAI's Codex Security CLI and TypeScript SDK for finding, validating, and fixing security vulnerabilities. npm: https://www.npmjs.com/package/@openai/codex-security",
    "lang": "TypeScript",
-   "stars": 12670,
-   "forks": 991,
-   "today": 643
+   "stars": 13276,
+   "forks": 1028,
+   "today": 751
   },
   {
-   "full": "nvm-sh/nvm",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        nvm-sh /\n\n      nvm  \n\n    \n      Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions.",
-   "lang": "Shell",
-   "stars": 96065,
-   "forks": 10761,
-   "today": 63
-  },
-  {
-   "full": "pookjw/HermesEnabler",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        pookjw /\n\n      HermesEnabler  \n\n    \n      Enable Hermès Watch Faces on any Apple Watch devices",
-   "lang": "Objective-C",
-   "stars": 1653,
-   "forks": 145,
-   "today": 218
+   "full": "ZhuLinsen/daily_stock_analysis",
+   "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        ZhuLinsen /\n\n      daily_stock_analysis  \n\n    \n      LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs.",
+   "lang": "Python",
+   "stars": 71879,
+   "forks": 57366,
+   "today": 256
   },
   {
    "full": "we-promise/sure",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        we-promise /\n\n      sure  \n\n    \n      The personal finance app for everyone (by everyone)",
    "lang": "Ruby",
-   "stars": 14192,
-   "forks": 1069,
-   "today": 967
+   "stars": 14890,
+   "forks": 1132,
+   "today": 925
   },
   {
-   "full": "QwenLM/qwen-code",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        QwenLM /\n\n      qwen-code  \n\n    \n      An open-source AI coding agent that lives in your terminal.",
+   "full": "backnotprop/plannotator",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        backnotprop /\n\n      plannotator  \n\n    \n      The workspace to stay in the loop and on top of agents - shape, decide, plan, annotate, review code, share with team, and send all feedback to agents with one click.",
    "lang": "TypeScript",
-   "stars": 29991,
-   "forks": 3410,
-   "today": 151
+   "stars": 10569,
+   "forks": 791,
+   "today": 108
   },
   {
-   "full": "ashhart/TensorFold",
-   "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        ashhart /\n\n      TensorFold  \n\n    \n      LLM Inference Engine for Metal, CUDA and Vulkan.",
-   "lang": "Zig",
-   "stars": 2021,
-   "forks": 397,
-   "today": 54
-  },
-  {
-   "full": "nodejs/node",
-   "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        nodejs /\n\n      node  \n\n    \n      Node.js JavaScript runtime ✨🐢🚀✨",
+   "full": "louislam/uptime-kuma",
+   "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        louislam /\n\n      uptime-kuma  \n\n    \n      A fancy self-hosted monitoring tool",
    "lang": "JavaScript",
-   "stars": 123657,
-   "forks": 38060,
-   "today": 62
+   "stars": 93967,
+   "forks": 8728,
+   "today": 71
   },
   {
-   "full": "addyosmani/agent-skills",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        addyosmani /\n\n      agent-skills  \n\n    \n      Production-grade engineering skills for AI coding agents.",
-   "lang": "JavaScript",
-   "stars": 116862,
-   "forks": 12220,
-   "today": 816
+   "full": "block/buzz",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        block /\n\n      buzz  \n\n    \n      A hive mind communication platform",
+   "lang": "Rust",
+   "stars": 37362,
+   "forks": 4944,
+   "today": 97
   },
   {
-   "full": "meta/astryx",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        meta /\n\n      astryx  \n\n    \n      An open source design system that's fully customizable and agent ready",
-   "lang": "TypeScript",
-   "stars": 26906,
-   "forks": 2086,
-   "today": 1830
+   "full": "tradermonty/claude-trading-skills",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        tradermonty /\n\n      claude-trading-skills  \n\n    \n      Claude Code skills for equity investors and traders — market analysis, technical charting, economic calendars, screeners, and trading strategy development.",
+   "lang": "Python",
+   "stars": 4314,
+   "forks": 881,
+   "today": 69
+  },
+  {
+   "full": "tailscale/tailcat",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        tailscale /\n\n      tailcat  \n\n    \n      like netcat, but over Tailscale's data plane, without Tailscale's control plane",
+   "lang": "Go",
+   "stars": 9577,
+   "forks": 435,
+   "today": 256
   }
  ]
 }
