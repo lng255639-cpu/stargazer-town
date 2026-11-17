@@ -1,86 +1,86 @@
 {
  "source": "trending",
- "updatedAt": "2026-11-16T07:28:11.916948+00:00",
+ "updatedAt": "2026-11-17T08:40:57.782409+00:00",
  "repos": [
-  {
-   "full": "dream-num/univer",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        dream-num /\n\n      univer  \n\n    \n      Build your own AI office with Univer Office SDK. Bring editing, calculation, collaboration, and file processing into your product for people and AI agents. Built on an extensible open-source core.",
-   "lang": "TypeScript",
-   "stars": 26633,
-   "forks": 2424,
-   "today": 988
-  },
   {
    "full": "ag-ui-protocol/ag-ui",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        ag-ui-protocol /\n\n      ag-ui  \n\n    \n      AG-UI: the Agent-User Interaction Protocol. Bring Agents into Frontend Applications.",
    "lang": "TypeScript",
-   "stars": 18171,
-   "forks": 1876,
-   "today": 355
-  },
-  {
-   "full": "google-labs-code/stitch-skills",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        google-labs-code /\n\n      stitch-skills  \n\n    \n      A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents such as Antigravity, Gemini CLI, Claude Code, Cursor.",
-   "lang": "TypeScript",
-   "stars": 9473,
-   "forks": 1176,
-   "today": 247
+   "stars": 19580,
+   "forks": 2022,
+   "today": 791
   },
   {
    "full": "backnotprop/plannotator",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        backnotprop /\n\n      plannotator  \n\n    \n      The workspace to stay in the loop and on top of agents - shape, decide, plan, annotate, review code, share with team, and send all feedback to agents with one click.",
    "lang": "TypeScript",
-   "stars": 12068,
-   "forks": 1131,
-   "today": 866
+   "stars": 12820,
+   "forks": 1272,
+   "today": 696
   },
   {
-   "full": "ChromeDevTools/chrome-devtools-mcp",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        ChromeDevTools /\n\n      chrome-devtools-mcp  \n\n    \n      Chrome DevTools for coding agents",
+   "full": "dream-num/univer",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        dream-num /\n\n      univer  \n\n    \n      Build your own AI office with Univer Office SDK. Bring editing, calculation, collaboration, and file processing into your product for people and AI agents. Built on an extensible open-source core.",
    "lang": "TypeScript",
-   "stars": 57240,
-   "forks": 4827,
-   "today": 717
+   "stars": 28555,
+   "forks": 2577,
+   "today": 1828
   },
   {
-   "full": "alibaba/open-code-review",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        alibaba /\n\n      open-code-review  \n\n    \n      Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible.",
-   "lang": "Go",
-   "stars": 52435,
-   "forks": 4195,
-   "today": 691
-  },
-  {
-   "full": "Tencent/LoopForge",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        Tencent /\n\n      LoopForge  \n\n    \n      Self-hosted workflows for coding-agent delivery. Orchestrate CodeBuddy, Codex and Claude Code with scripts and human approval gates. Includes Local workflows for coding assistants.",
-   "lang": "Go",
-   "stars": 1876,
-   "forks": 309,
-   "today": 423
-  },
-  {
-   "full": "ggml-org/ggml",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        ggml-org /\n\n      ggml  \n\n    \n      Tensor library for machine learning",
-   "lang": "C++",
-   "stars": 16006,
-   "forks": 2055,
-   "today": 43
+   "full": "tradermonty/claude-trading-skills",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        tradermonty /\n\n      claude-trading-skills  \n\n    \n      Claude Code skills for equity investors and traders — market analysis, technical charting, economic calendars, screeners, and trading strategy development.",
+   "lang": "Python",
+   "stars": 6612,
+   "forks": 1377,
+   "today": 837
   },
   {
    "full": "elementalsouls/Claude-BugHunter",
    "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        elementalsouls /\n\n      Claude-BugHunter  \n\n    \n      A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
    "lang": "Python",
-   "stars": 6778,
-   "forks": 1042,
-   "today": 98
+   "stars": 7837,
+   "forks": 1216,
+   "today": 1094
   },
   {
-   "full": "GoogleChrome/modern-web-guidance-src",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        GoogleChrome /\n\n      modern-web-guidance-src  \n\n    \n      Keep your coding agent up to date with the latest web best practices",
+   "full": "getarcaneapp/arcane",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        getarcaneapp /\n\n      arcane  \n\n    \n      Modern Docker Management, Designed for Everyone",
+   "lang": "Go",
+   "stars": 8957,
+   "forks": 462,
+   "today": 46
+  },
+  {
+   "full": "DeanChensj/jiangshan-map",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        DeanChensj /\n\n      jiangshan-map  \n\n    \n      江山时序 · 中国历史交互地图时间轴 (403 BCE – Present) | Interactive Historical Atlas of China across 18 dynasties, 198 territory snapshots, ancient-to-modern place genealogy & classical poetry routes",
+   "lang": "JavaScript",
+   "stars": 7400,
+   "forks": 887,
+   "today": 288
+  },
+  {
+   "full": "google-labs-code/stitch-skills",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        google-labs-code /\n\n      stitch-skills  \n\n    \n      A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents such as Antigravity, Gemini CLI, Claude Code, Cursor.",
    "lang": "TypeScript",
-   "stars": 7500,
-   "forks": 653,
-   "today": 1219
+   "stars": 9868,
+   "forks": 1281,
+   "today": 529
+  },
+  {
+   "full": "mvanhorn/last30days-skill",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        mvanhorn /\n\n      last30days-skill  \n\n    \n      AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
+   "lang": "Python",
+   "stars": 68420,
+   "forks": 6087,
+   "today": 135
+  },
+  {
+   "full": "NVIDIA/SkillEvaluator",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        NVIDIA /\n\n      SkillEvaluator  \n\n    \n      Multi-tier framework for evaluating AI agent skills and plugins with quality gates, semantic overlap detection, synthetic evaluation dataset generation, and live agent evaluation that measures how skills affect agent behavior.",
+   "lang": "Python",
+   "stars": 3049,
+   "forks": 434,
+   "today": 873
   }
  ]
 }
