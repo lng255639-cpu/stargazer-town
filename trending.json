@@ -1,86 +1,86 @@
 {
  "source": "trending",
- "updatedAt": "2026-11-20T07:53:35.590851+00:00",
+ "updatedAt": "2026-11-21T07:51:35.245871+00:00",
  "repos": [
   {
    "full": "elementalsouls/Claude-BugHunter",
    "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        elementalsouls /\n\n      Claude-BugHunter  \n\n    \n      A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
    "lang": "Python",
-   "stars": 13032,
-   "forks": 1622,
-   "today": 1349
+   "stars": 14773,
+   "forks": 1737,
+   "today": 1622
   },
   {
    "full": "obra/superpowers",
    "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        obra /\n\n      superpowers  \n\n    \n      An agentic skills framework & software development methodology that works.",
    "lang": "Shell",
-   "stars": 322333,
-   "forks": 28645,
-   "today": 2028
+   "stars": 323017,
+   "forks": 28679,
+   "today": 890
   },
   {
    "full": "HKUDS/CLI-Anything",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        HKUDS /\n\n      CLI-Anything  \n\n    \n      \"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
    "lang": "Python",
-   "stars": 60813,
-   "forks": 5516,
-   "today": 898
+   "stars": 61590,
+   "forks": 5585,
+   "today": 773
   },
   {
    "full": "jingyaogong/minimind",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        jingyaogong /\n\n      minimind  \n\n    \n      🧠 两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours.",
    "lang": "Python",
-   "stars": 67247,
-   "forks": 8826,
-   "today": 238
+   "stars": 67840,
+   "forks": 8871,
+   "today": 847
   },
   {
    "full": "cursor/plugins",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        cursor /\n\n      plugins  \n\n    \n      Cursor plugin specification and official plugins",
    "lang": "TypeScript",
-   "stars": 17648,
-   "forks": 1944,
-   "today": 384
+   "stars": 17925,
+   "forks": 1963,
+   "today": 299
   },
   {
    "full": "firecrawl/firecrawl",
-   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        firecrawl /\n\n      firecrawl  \n\n    \n      Knowledge infrastructure to make your agents smarter. Search, scrape and 550+ data providers through one API.",
+   "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        firecrawl /\n\n      firecrawl  \n\n    \n      Knowledge infrastructure to make your agents smarter. Search, scrape and access 550+ data providers through one API.",
    "lang": "TypeScript",
-   "stars": 204571,
-   "forks": 10722,
-   "today": 825
+   "stars": 205543,
+   "forks": 10748,
+   "today": 1241
   },
   {
    "full": "nginx/nginx",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        nginx /\n\n      nginx  \n\n    \n      The official NGINX Open Source repository.",
    "lang": "C",
-   "stars": 32423,
-   "forks": 8422,
-   "today": 73
+   "stars": 32625,
+   "forks": 8369,
+   "today": 246
   },
   {
    "full": "openvinotoolkit/openvino",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        openvinotoolkit /\n\n      openvino  \n\n    \n      OpenVINO™ is an open source toolkit for optimizing and deploying AI inference",
    "lang": "C++",
-   "stars": 11629,
-   "forks": 3625,
-   "today": 246
+   "stars": 11837,
+   "forks": 3642,
+   "today": 217
   },
   {
    "full": "cathrynlavery/diagram-design",
    "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        cathrynlavery /\n\n      diagram-design  \n\n    \n      Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 45 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
    "lang": "HTML",
-   "stars": 68868,
-   "forks": 4625,
-   "today": 271
+   "stars": 69457,
+   "forks": 4662,
+   "today": 636
   },
   {
    "full": "mvanhorn/last30days-skill",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        mvanhorn /\n\n      last30days-skill  \n\n    \n      AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
    "lang": "Python",
-   "stars": 71027,
-   "forks": 6324,
-   "today": 954
+   "stars": 71599,
+   "forks": 6342,
+   "today": 681
   }
  ]
 }
