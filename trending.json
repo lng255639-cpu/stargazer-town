@@ -1,86 +1,86 @@
 {
  "source": "trending",
- "updatedAt": "2026-11-21T07:51:35.245871+00:00",
+ "updatedAt": "2026-11-22T07:38:41.588883+00:00",
  "repos": [
   {
    "full": "elementalsouls/Claude-BugHunter",
    "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        elementalsouls /\n\n      Claude-BugHunter  \n\n    \n      A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
    "lang": "Python",
-   "stars": 14773,
-   "forks": 1737,
-   "today": 1622
+   "stars": 16471,
+   "forks": 1870,
+   "today": 1803
   },
   {
    "full": "obra/superpowers",
    "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        obra /\n\n      superpowers  \n\n    \n      An agentic skills framework & software development methodology that works.",
    "lang": "Shell",
-   "stars": 323017,
-   "forks": 28679,
-   "today": 890
+   "stars": 323902,
+   "forks": 28729,
+   "today": 883
   },
   {
    "full": "HKUDS/CLI-Anything",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        HKUDS /\n\n      CLI-Anything  \n\n    \n      \"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
    "lang": "Python",
-   "stars": 61590,
-   "forks": 5585,
-   "today": 773
+   "stars": 62264,
+   "forks": 5652,
+   "today": 769
   },
   {
    "full": "jingyaogong/minimind",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        jingyaogong /\n\n      minimind  \n\n    \n      🧠 两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours.",
    "lang": "Python",
-   "stars": 67840,
-   "forks": 8871,
-   "today": 847
+   "stars": 68285,
+   "forks": 8929,
+   "today": 488
   },
   {
    "full": "cursor/plugins",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        cursor /\n\n      plugins  \n\n    \n      Cursor plugin specification and official plugins",
    "lang": "TypeScript",
-   "stars": 17925,
-   "forks": 1963,
-   "today": 299
+   "stars": 18187,
+   "forks": 1987,
+   "today": 260
   },
   {
    "full": "firecrawl/firecrawl",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        firecrawl /\n\n      firecrawl  \n\n    \n      Knowledge infrastructure to make your agents smarter. Search, scrape and access 550+ data providers through one API.",
    "lang": "TypeScript",
-   "stars": 205543,
-   "forks": 10748,
-   "today": 1241
+   "stars": 206426,
+   "forks": 10793,
+   "today": 1006
   },
   {
    "full": "nginx/nginx",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        nginx /\n\n      nginx  \n\n    \n      The official NGINX Open Source repository.",
    "lang": "C",
-   "stars": 32625,
-   "forks": 8369,
-   "today": 246
+   "stars": 32780,
+   "forks": 8376,
+   "today": 189
   },
   {
    "full": "openvinotoolkit/openvino",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        openvinotoolkit /\n\n      openvino  \n\n    \n      OpenVINO™ is an open source toolkit for optimizing and deploying AI inference",
    "lang": "C++",
-   "stars": 11837,
-   "forks": 3642,
-   "today": 217
+   "stars": 11983,
+   "forks": 3654,
+   "today": 200
   },
   {
    "full": "cathrynlavery/diagram-design",
    "desc": "Sponsor\n    \n  \n\n\n\n      \n            \n    \n\n    \n\n        \n          Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        cathrynlavery /\n\n      diagram-design  \n\n    \n      Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 45 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
    "lang": "HTML",
-   "stars": 69457,
-   "forks": 4662,
-   "today": 636
+   "stars": 69943,
+   "forks": 4691,
+   "today": 583
   },
   {
    "full": "mvanhorn/last30days-skill",
    "desc": "Star\n\n\n  \n\n  \n    \n    \n\n\n      \n        mvanhorn /\n\n      last30days-skill  \n\n    \n      AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
    "lang": "Python",
-   "stars": 71599,
-   "forks": 6342,
-   "today": 681
+   "stars": 72200,
+   "forks": 6392,
+   "today": 560
   }
  ]
 }
